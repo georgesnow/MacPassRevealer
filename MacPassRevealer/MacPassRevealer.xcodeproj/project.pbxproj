@@ -31,7 +31,7 @@
 		4C81391E2281FBC200092FD7 = {
 			isa = PBXGroup;
 			children = (
-				4C8139292281FBC200092FD7 /* AutotypeURL */,
+				4C8139292281FBC200092FD7 /* MacPassRevealer */,
 				4C8139282281FBC200092FD7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,14 +44,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C8139292281FBC200092FD7 /* AutotypeURL */ = {
+		4C8139292281FBC200092FD7 /* MacPassRevealer */ = {
 			isa = PBXGroup;
 			children = (
 				4C81392A2281FBC200092FD7 /* Info.plist */,
 				4C8139302281FD3900092FD7 /* MacPassRevealer.h */,
 				4C8139312281FD3900092FD7 /* MacPassRevealer.m */,
 			);
-			path = AutotypeURL;
+			path = MacPassRevealer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,7 +159,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer: gsnowiii@gmail.com (JLUT8362TK)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -228,7 +228,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer: gsnowiii@gmail.com (JLUT8362TK)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -265,7 +265,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = XXSQT4Y6X2;
-				INFOPLIST_FILE = AutotypeURL/Info.plist;
+				INFOPLIST_FILE = MacPassRevealer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.MacPassRevealer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -282,7 +282,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = XXSQT4Y6X2;
-				INFOPLIST_FILE = AutotypeURL/Info.plist;
+				INFOPLIST_FILE = MacPassRevealer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.MacPassRevealer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
