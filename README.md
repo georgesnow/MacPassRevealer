@@ -15,6 +15,5 @@ The keyboard shortcut is hard configured for Control+Option+`
 
 
 Other Notes:
-Hopefully, I will later add custmizating the keyboard shortcut. 
-Menubar icon for quick access
-
+Added a Menubar icon for quick access
+Hopefully, I will later add custmizating the keyboard shortcut.
