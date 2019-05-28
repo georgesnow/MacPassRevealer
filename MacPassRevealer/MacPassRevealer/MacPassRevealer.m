@@ -19,31 +19,69 @@
 
 
 @implementation theHotKey
+NSStatusItem *statusItem;
 
 //hotkey
 OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *userData) {
   EventHotKeyID hkCom;
   
   GetEventParameter(theEvent, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(hkCom), NULL, &hkCom);
-
+  //NSController *controller = (userData *);
   NSString *macPass = @"MacPass.app";
-
+  //NSString *macPassBundle = @"com.hicknhacksoftware.MacPass";
   int l = hkCom.id;
-
+  //NSWorkspace *workspaceApp = [NSWorkspace sharedWorkspace];
+  
+  //NSArray *runningApplications = [[NSWorkspace sharedWorkspace] runningApplications];
+  //NSPredicate *activePredicate = [NSPredicate predicateWithFormat:@"active == YES"];
+  //NSLog(@"activePredicate: %@", activePredicate);
+  //NSArray *currentAppArray = [runningApplications filteredArrayUsingPredicate:activePredicate];
+  //NSString *currentApp = currentAppArray[0];
+  //NSLog(@"currentApp: %@", currentApp);
   NSString *frontApp = NSWorkspace.sharedWorkspace.frontmostApplication.localizedName;
   NSLog(@"frontApp: %@", frontApp);
   
   
   switch (l) {
     case 1:
+      
+      //[NSApp unhideAllApplications:sender];
+      //[NSApp unhide:macPass];
+      
       NSLog(@"frontApp: %@", frontApp);
-
+      
+//      if (1) {
+//        //NSLog(@"hey the current bundle is macpass");
+//        [frontApp  isEqual: @"MacPass"] ? [NSApp hide:macPass] : [NSApp activateIgnoringOtherApps:YES];
+//      }
+      
+      //      [[NSWorkspace sharedWorkspace] launchApplication:macPass];
+      //      if ([frontApp isEqual: @"Safari"]) {
+      //        break;
+      //      }
+      
+//      if ([frontApp  isEqual: @"MacPass"]) {
+//        //NSLog(@"hey the current bundle is macpass");
+//        [NSApp hide:macPass];
+//
+//
+//        //break;
+//      }
+//      else {
+//        //[NSApp unhide:macPass];
+//        //[[NSWorkspace sharedWorkspace] launchApplication:macPass];
+//        [NSApp activateIgnoringOtherApps:YES];
+//        //break;
+//      }
       break;
     case 2:
       if (2) {
         //NSLog(@"hey the current bundle is macpass");
         [frontApp  isEqual: @"MacPass"] ? [NSApp hide:macPass] : [NSApp activateIgnoringOtherApps:YES];
       }
+      //[NSApp unhideAllApplications:sender];
+      //[NSApp hide:macPass];
+      //[[NSWorkspace sharedWorkspace] launchApplication:macPass];
       break;
       
   }
@@ -53,10 +91,48 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
 - (instancetype)initWithPluginHost:(MPPluginHost *)host {
   self = [super initWithPluginHost:host];
   [self registerHotKeys];
+  //status bar
+  NSStatusBar *statusBar = [NSStatusBar systemStatusBar];
+  statusItem = [statusBar statusItemWithLength:NSVariableStatusItemLength];
+  NSBundle *bundle = [NSBundle bundleForClass:self.class];
+  NSImage *image = [bundle imageForResource:@"Lock3"];
+  statusItem.button.image = image;
+  //statusItem.button.cell.highlighted = YES;
+  statusItem.button.action = @selector(activateMacPass);
+  statusItem.button.target = self;
+  
+  
+  
+  
+  
+  
+  //status bar
+  
   return self;
 }
 
 
+
+-(void)dealloc{
+  
+
+
+}
+
+-(void)activateMacPass {
+  NSString *frontApp = NSWorkspace.sharedWorkspace.frontmostApplication.localizedName;
+  NSString *macPass = @"MacPass";
+  if ([frontApp  isEqual: @"MacPass"]) {
+    NSLog(@"hey the current bundle is macpass");
+    NSLog(@"self is what %@", self);
+    [NSApp hide:macPass];
+  }
+  else {
+    NSLog(@"hey the current bundle is NOT macpass");
+    [NSApp activateIgnoringOtherApps:YES];
+    
+  }
+}
 
 -(void)registerHotKeys {
   EventHotKeyRef gMyHotKeyRef;
