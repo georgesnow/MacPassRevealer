@@ -56,15 +56,7 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
   return self;
 }
 
--(void)macPassActive {
-  NSString *frontApp = NSWorkspace.sharedWorkspace.frontmostApplication.localizedName;
-  NSString *macPass = @"MacPass.app";
-  if ([frontApp  isEqual: @"MacPass"]) {
-    //NSLog(@"hey the current bundle is macpass");
-    self ? [NSApp hide:macPass] : [NSApp activateIgnoringOtherApps:YES];
-    
-  }
-}
+
 
 -(void)registerHotKeys {
   EventHotKeyRef gMyHotKeyRef;
