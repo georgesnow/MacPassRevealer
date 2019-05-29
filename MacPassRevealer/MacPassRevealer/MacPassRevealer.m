@@ -8,118 +8,87 @@
 #import "MacPassRevealer.h"
 #import "Carbon/Carbon.h"
 
+static NSString *const MPRMacPassBundleIdentifier = @"com.hicknhacksoftware.MacPass";
+static int const MPRHotKeyId1 = 1;
+static int const MPRHotKeyId2 = 2;
 
-@interface MPPlugin ()
+@interface MPRMacPassRevealer ()
 
-@property(readonly, strong) NSRunningApplication *frontmostApplication;
+@property (strong) NSStatusItem *statusItem;
 
 @end
 
-
-
-
-@implementation theHotKey
-NSStatusItem *statusItem;
+@implementation MPRMacPassRevealer
 
 //hotkey
 OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *userData) {
   EventHotKeyID hkCom;
   
   GetEventParameter(theEvent, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(hkCom), NULL, &hkCom);
-
-  NSString *macPass = @"MacPass.app";
-
-  int l = hkCom.id;
-
-
-  NSString *frontApp = NSWorkspace.sharedWorkspace.frontmostApplication.localizedName;
-  NSLog(@"frontApp: %@", frontApp);
   
+  int hotKeyId = hkCom.id;
   
-  switch (l) {
-    case 1:
-
-      
-      NSLog(@"frontApp: %@", frontApp);
-
-
+  NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
+  NSRunningApplication *macPass = NSRunningApplication.currentApplication;
+  
+  NSLog(@"frontApp: %@", frontMostApplication);
+  
+  switch (hotKeyId) {
+    case MPRHotKeyId1:
+      NSLog(@"frontApp: %@", frontMostApplication);
       break;
-    case 2:
-      if (2) {
-
-        [frontApp  isEqual: @"MacPass"] ? [NSApp hide:macPass] : [NSApp activateIgnoringOtherApps:YES];
+    case MPRHotKeyId2: {
+      if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
+        [NSApplication.sharedApplication hide:nil];
       }
-
-
+      else {
+        [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
+      }
       break;
-      
+    }
   }
   return noErr;
 }
 
 - (instancetype)initWithPluginHost:(MPPluginHost *)host {
   self = [super initWithPluginHost:host];
-  [self registerHotKeys];
-  //status bar
-  NSStatusBar *statusBar = [NSStatusBar systemStatusBar];
-  statusItem = [statusBar statusItemWithLength:NSVariableStatusItemLength];
-  NSBundle *bundle = [NSBundle bundleForClass:self.class];
-  NSImage *image = [bundle imageForResource:@"Lock3"];
-  statusItem.button.image = image;
-  //statusItem.button.cell.highlighted = YES;
-  statusItem.button.action = @selector(activateMacPass);
-  statusItem.button.target = self;
-  
-  
-  
-  
-  
-  
-  //status bar
-  
+  if(self) {
+    [self registerHotKeys];
+    self.statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:NSVariableStatusItemLength];
+    NSBundle *bundle = [NSBundle bundleForClass:self.class];
+    // TODO: Use scalable graphic (e.g. PDF)
+    self.statusItem.button.image = [bundle imageForResource:@"Lock3"];
+    self.statusItem.button.action = @selector(activateMacPass);
+    self.statusItem.button.target = self;
+  }
   return self;
 }
 
-
-
--(void)dealloc{
-  
-
-
-}
-
--(void)activateMacPass {
-  NSString *frontApp = NSWorkspace.sharedWorkspace.frontmostApplication.localizedName;
-  NSString *macPass = @"MacPass";
-  if ([frontApp  isEqual: @"MacPass"]) {
-    NSLog(@"hey the current bundle is macpass");
-    [NSApp hide:macPass];
+- (void)activateMacPass {
+  NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
+  NSRunningApplication *macPass = NSRunningApplication.currentApplication;
+  if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
+    [NSApplication.sharedApplication hide:nil];
   }
   else {
-    NSLog(@"hey the current bundle is NOT macpass");
-    [NSApp activateIgnoringOtherApps:YES];
-    
+    [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
   }
 }
 
--(void)registerHotKeys {
+- (void)registerHotKeys {
   EventHotKeyRef gMyHotKeyRef;
   EventHotKeyID gMyHotKeyID;
   EventTypeSpec eventType;
   eventType.eventClass=kEventClassKeyboard;
   eventType.eventKind=kEventHotKeyPressed;
-  
-  
-  
+
   InstallApplicationEventHandler(&OnHotKeyEvent, 1, &eventType, NULL, NULL);
   gMyHotKeyID.signature='htk1';
-  gMyHotKeyID.id=1;
-  //RegisterEventHotKey(53, controlKey+optionKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
+  gMyHotKeyID.id=MPRHotKeyId1;
   
   gMyHotKeyID.signature='htk2';
-  gMyHotKeyID.id=2;
+  gMyHotKeyID.id=MPRHotKeyId2;
   RegisterEventHotKey(50, controlKey+optionKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
-  
 }
 
 
