@@ -80,6 +80,7 @@
 		4C81391F2281FBC200092FD7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = MPR;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
