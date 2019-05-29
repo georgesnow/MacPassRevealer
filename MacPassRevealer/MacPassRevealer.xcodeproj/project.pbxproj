@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C156032229E840E004BF919 /* Lock3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C156031229E840E004BF919 /* Lock3.png */; };
 		4C8139322281FD3900092FD7 /* MacPassRevealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8139312281FD3900092FD7 /* MacPassRevealer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C156031229E840E004BF919 /* Lock3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lock3.png; sourceTree = "<group>"; };
 		4C8139272281FBC200092FD7 /* MacPassRevealer.mpplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacPassRevealer.mpplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C81392A2281FBC200092FD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8139302281FD3900092FD7 /* MacPassRevealer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacPassRevealer.h; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 		4C8139292281FBC200092FD7 /* MacPassRevealer */ = {
 			isa = PBXGroup;
 			children = (
+				4C156031229E840E004BF919 /* Lock3.png */,
 				4C81392A2281FBC200092FD7 /* Info.plist */,
 				4C8139302281FD3900092FD7 /* MacPassRevealer.h */,
 				4C8139312281FD3900092FD7 /* MacPassRevealer.m */,
@@ -111,6 +114,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C156032229E840E004BF919 /* Lock3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +269,8 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = XXSQT4Y6X2;
+				DEVELOPMENT_TEAM = 55SM4L4Z97;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../MacPass/**";
 				INFOPLIST_FILE = MacPassRevealer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.MacPassRevealer;
@@ -282,7 +287,8 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = XXSQT4Y6X2;
+				DEVELOPMENT_TEAM = 55SM4L4Z97;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../MacPass/**";
 				INFOPLIST_FILE = MacPassRevealer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hicknhacksoftware.MacPassRevealer;
