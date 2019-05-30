@@ -12,7 +12,9 @@ static NSString *const MPRMacPassBundleIdentifier = @"com.hicknhacksoftware.MacP
 static int const MPRHotKeyId1 = 1;
 static int const MPRHotKeyId2 = 2;
 
+
 @interface MPRMacPassRevealer ()
+
 
 @property (strong) NSStatusItem *statusItem;
 
@@ -54,33 +56,74 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
   self = [super initWithPluginHost:host];
   if(self) {
     [self registerHotKeys];
-    self.statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:NSVariableStatusItemLength];
-    NSBundle *bundle = [NSBundle bundleForClass:self.class];
+    [self createStatusBarItem];
+    //self.statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:NSVariableStatusItemLength];
+    //NSBundle *bundle = [NSBundle bundleForClass:self.class];
     // TODO: Use scalable graphic (e.g. PDF)
-    self.statusItem.button.image = [bundle imageForResource:@"Lock3"];
-    self.statusItem.button.action = @selector(activateMacPass);
-    self.statusItem.button.target = self;
+    //self.statusItem.button.image = [bundle imageForResource:@"Lock3"];
+    //self.statusItem.button.toolTip = @"Option+Click Quits MacPass";
+    //self.statusItem.button.action = @selector(itemClicked:);
+    //self.statusItem.button.target = self;
+    
     // TODO: Make hide dock icon user pref - needs refinement
     //[NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
   }
   return self;
 }
 
-- (void)activateMacPass {
+
+- (void)createStatusBarItem {
+  NSStatusBar *statusBar = [NSStatusBar systemStatusBar];
+  NSBundle *bundle = [NSBundle bundleForClass:self.class];
+  _statusItem = [statusBar statusItemWithLength:NSSquareStatusItemLength];
+  _statusItem.button.image = [bundle imageForResource:@"Lock3"];
+  _statusItem.button.action = @selector(itemClicked:);
+  _statusItem.button.target = self;
+  //_statusItem.menu = [self createStatusBarMenu];
+  
+}
+
+- (void)activateMacPass:(id)sender {
   NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
   NSRunningApplication *macPass = NSRunningApplication.currentApplication;
-  NSEvent *event = [NSApp currentEvent];
-  if([event modifierFlags] & NSEventModifierFlagOption) {
-    //NSLog(@"hey option key and click");
-    [NSApplication.sharedApplication terminate:self];
-  }
-  else if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
+  if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
     [NSApplication.sharedApplication hide:nil];
   }
   else {
     [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
   }
 }
+
+- (NSMenu *)createStatusBarMenu {
+
+   NSMenu *menu = [[NSMenu alloc] init];
+  
+  NSMenuItem *quitMacPass = [[NSMenuItem alloc] initWithTitle:@"Quit MacPass" action:@selector(quitMacPass:) keyEquivalent:@""];
+  [quitMacPass setTarget:self];
+  [menu addItem:quitMacPass];
+  
+  return menu;
+  
+}
+
+- (void)quitMacPass:(id)sender {
+  [[NSApplication sharedApplication] terminate:self];
+  
+  return;
+}
+
+- (void)itemClicked:(id)sender {
+  NSLog(@"item clicked triggered");
+  //Look for option click display menu
+  //[[NSStatusBar systemStatusBar] removeStatusItem:self.statusItem];
+  NSEvent *event = [NSApp currentEvent];
+  if([event modifierFlags] & NSEventModifierFlagOption) {
+    NSLog(@"first option+regular click");
+    _statusItem.menu = [self createStatusBarMenu];
+  }
+  else {
+    [self performSelector:(@selector(activateMacPass:))];
+  }
 
 - (void)registerHotKeys {
   EventHotKeyRef gMyHotKeyRef;
@@ -101,4 +144,13 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
 }
 
 
+
+
 @end
+
+
+
+
+
+
+
