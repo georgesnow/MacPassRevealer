@@ -58,9 +58,11 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
   if(self) {
     [self registerHotKeys];
     [self createStatusBarItem];
- 
-    _statusItem.button.action = @selector(itemClicked:);
+    _statusItem.menu.delegate = _statusItem.menu.delegate;
+    [self _updateStatusBarMenu];
     
+    _statusItem.button.action = _statusItem.menu.itemArray > 0 ? @selector(activateMacPass:) : @selector(itemClicked:);
+    // TODO: Use scalable graphic (e.g. PDF)
     // TODO: Make hide dock icon user pref - needs refinement
     //[NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
   }
@@ -78,7 +80,6 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
 }
 
 - (void)activateMacPass:(id)sender {
-  //_statusItem.menu = nil;
   NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
   NSRunningApplication *macPass = NSRunningApplication.currentApplication;
   if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
@@ -90,22 +91,38 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
   }
 }
 
-- (void)createStatusBarMenu:(NSMenu *)menu {
-
-  //NSMenu *menu = [[NSMenu alloc] init];
+- (NSMenu *)createStatusBarMenu:(NSMenu *)menu {
   NSLog(@"made it to createStatusBarMenu");
   NSMenuItem *quitMacPass = [[NSMenuItem alloc] initWithTitle:@"Quit MacPass" action:@selector(quitMacPass:) keyEquivalent:@"quitMacPass"];
   [quitMacPass setTarget:self];
   [_statusItem.menu addItem:quitMacPass];
   [menu addItem:quitMacPass];
-  _statusItem.menu = menu;
-  
+
+  return menu;
   
 }
-- (NSMenu *)clearStatusMenu {
-  NSMenu *menu = [[NSMenu alloc] init];
-  [menu removeAllItems];
-  return nil;
+-(void)menuDidClose:(NSNotification *)notification{
+  NSLog(@"menudidclose");
+  _statusItem.menu = nil;
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:NSMenuDidEndTrackingNotification object:notification.object];
+  
+}
+
+-(NSMenu *)_updateStatusBarMenu{
+    NSLog(@"_updateStatusBarMenu");
+    NSMenu *menu = [[NSMenu alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidClose:) name:NSMenuDidEndTrackingNotification object:_statusItem.menu];
+    NSMenuItem *quitMacPass = [[NSMenuItem alloc] initWithTitle:@"Quit MacPass" action:@selector(quitMacPass:) keyEquivalent:@"quitMacPass"];
+    
+    [quitMacPass setTarget:self];
+    [menu addItem:quitMacPass];
+    return menu;
+}
+
+- (void)clearStatusMenu {
+  NSLog(@"clearStatusMenu");
+  _statusItem.menu = nil;
+  [self performSelector:@selector(itemClicked:)];
 }
 
 - (void)quitMacPass:(id)sender {
@@ -117,9 +134,15 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
 - (void)itemClicked:(id)sender {
   //_statusItem.menu = nil;
   NSEvent *event = [NSApp currentEvent];
+  
+  
   if (([event modifierFlags] & NSEventModifierFlagOption)) {
     NSLog(@"option click detected");
-    [self performSelector:@selector(createStatusBarMenu:) withObject:(_statusItem.menu)];
+    [self performSelector:@selector(quitMacPass:)];
+  }
+  else if (([event modifierFlags] & NSEventModifierFlagControl)) {
+    NSLog(@"control click detected");
+    _statusItem.menu = [self _updateStatusBarMenu];
   }
   else {
     NSLog(@"regularclick detected sending to actiavetMacPass");
