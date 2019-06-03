@@ -9,10 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MPRMacPassRevealer : MPPlugin
+
+@interface MPRMacPassRevealer : MPPlugin;
 
 @end
-
 
 
 NS_ASSUME_NONNULL_END
