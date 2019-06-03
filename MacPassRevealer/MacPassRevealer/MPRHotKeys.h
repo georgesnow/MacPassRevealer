@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class kMPRHotKeys;
 @interface MPRHotKeys : NSObject;
 
-//-(void)registerHotKeys;
 
 @end
 
