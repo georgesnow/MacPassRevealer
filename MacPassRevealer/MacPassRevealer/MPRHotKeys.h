@@ -10,7 +10,6 @@
 #import "MPRHotKeys.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@class kMPRHotKeys;
 @interface MPRHotKeys : NSObject;
 
 
