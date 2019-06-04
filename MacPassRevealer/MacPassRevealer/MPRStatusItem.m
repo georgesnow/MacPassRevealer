@@ -38,12 +38,8 @@
 - (void)activateMacPass {
   NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
   NSRunningApplication *macPass = NSRunningApplication.currentApplication;
-  NSEvent *event = [NSApp currentEvent];
-  if([event modifierFlags] & NSEventModifierFlagOption) {
-    //NSLog(@"hey option key and click");
-    [NSApplication.sharedApplication terminate:self];
-  }
-  else if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
+
+  if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
     [NSApplication.sharedApplication hide:nil];
   }
   else {
@@ -52,49 +48,44 @@
 }
 -(void)menuDidClose:(NSNotification *)notification{
   NSLog(@"menudidclose");
-  _statusItem.menu = nil;
+  self.statusItem.menu = nil;
   [[NSNotificationCenter defaultCenter] removeObserver:self name:NSMenuDidEndTrackingNotification object:notification.object];
   
 }
 
--(NSMenu *)_updateStatusBarMenu{
+-(NSMenu *)updateStatusBarMenu{
   NSLog(@"_updateStatusBarMenu");
   NSMenu *menu = [[NSMenu alloc] init];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidClose:) name:NSMenuDidEndTrackingNotification object:_statusItem.menu];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidClose:) name:NSMenuDidEndTrackingNotification object:self.statusItem.menu];
   NSMenuItem *quitMacPass = [[NSMenuItem alloc] initWithTitle:@"Quit MacPass" action:@selector(quitMacPass:) keyEquivalent:@"quitMacPass"];
   
   [quitMacPass setTarget:self];
   [menu addItem:quitMacPass];
   return menu;
+
 }
 
 - (void)quitMacPass:(id)sender {
   [[NSApplication sharedApplication] terminate:self];
-  
   return;
 }
 
 - (void)itemClicked:(id)sender {
   //_statusItem.menu = nil;
   NSEvent *event = [NSApp currentEvent];
-  
-  
   if (([event modifierFlags] & NSEventModifierFlagOption)) {
     NSLog(@"option click detected");
     [self performSelector:@selector(quitMacPass:)];
   }
   else if (([event modifierFlags] & NSEventModifierFlagControl)) {
     NSLog(@"control click detected");
-    _statusItem.menu = [self _updateStatusBarMenu];
+    self.statusItem.menu = [self updateStatusBarMenu];
+  
   }
   else {
-    NSLog(@"regularclick detected sending to actiavetMacPass");
+    NSLog(@"regularclick detected");
     [self performSelector:@selector(activateMacPass)];
   }
-  
-  
-  
 }
 
 @end
-
