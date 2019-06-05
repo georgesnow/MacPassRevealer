@@ -7,10 +7,14 @@ I do recommend testing it out before making part of your production use.
 User feedback is welcome.
 
 Important Notes:
-The keyboard shortcut is hard configured for Control+Option+`
-Single click while unhide MacPass
-Option click will quit MacPass
-Contrl double click will display a menu (Currently, only an option to Quit MacPass)
+
+-The keyboard shortcut is hard configured for Control+Option+`
+
+-Single click while unhide MacPass
+
+-Option click will quit MacPass
+
+-Contrl double click will display a menu (Currently, only an option to Quit MacPass)
 
 
 Other Notes:
