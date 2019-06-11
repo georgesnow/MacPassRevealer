@@ -21,6 +21,6 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>None</string>
 	<key>NSPrincipalClass</key>
-	<string>MacPassRevealer</string>
+	<string>MPRMacPassRevealer</string>
 </dict>
 </plist>
