@@ -12,6 +12,7 @@
 
 @interface MPRStatusItem : NSObject;
 
-
+//@property BOOL clickMask;
 
 @end
+

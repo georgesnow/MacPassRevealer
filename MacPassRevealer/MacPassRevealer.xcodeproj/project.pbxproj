@@ -7,22 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C156032229E840E004BF919 /* Lock3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C156031229E840E004BF919 /* Lock3.png */; };
-		4C8139322281FD3900092FD7 /* MacPassRevealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8139312281FD3900092FD7 /* MacPassRevealer.m */; };
-		7E93DA0F22A8538200C8D3E5 /* MPRHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E93DA0C22A8538200C8D3E5 /* MPRHotKey.m */; };
-		7E93DA1022A8538200C8D3E5 /* MPRStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E93DA0E22A8538200C8D3E5 /* MPRStatusItem.m */; };
+		7E71527322AAEE6B00A6E7F0 /* MPRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E71527222AAEE6B00A6E7F0 /* MPRViewController.m */; };
+		7E7191CC22B03C930001FDA4 /* MPRMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7191CB22B03C930001FDA4 /* MPRMenu.m */; };
+		7E95982722B135A600157873 /* MPRStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E95982622B135A600157873 /* MPRStoryboard.storyboard */; };
+		7EAB7E5D22A97DBE00D35C38 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EAB7E5522A97DBE00D35C38 /* Info.plist */; };
+		7EAB7E5E22A97DBE00D35C38 /* MPRHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB7E5622A97DBE00D35C38 /* MPRHotKey.m */; };
+		7EAB7E5F22A97DBE00D35C38 /* Lock3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAB7E5922A97DBE00D35C38 /* Lock3.png */; };
+		7EAB7E6022A97DBE00D35C38 /* MPRStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB7E5A22A97DBE00D35C38 /* MPRStatusItem.m */; };
+		7EAB7E6122A97DBE00D35C38 /* MacPassRevealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB7E5C22A97DBE00D35C38 /* MacPassRevealer.m */; };
+		7EBB6A5E22A9ED2800DB23FD /* MPRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBB6A5D22A9ED2800DB23FD /* MPRView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C156031229E840E004BF919 /* Lock3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lock3.png; sourceTree = "<group>"; };
 		4C8139272281FBC200092FD7 /* MacPassRevealer.mpplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacPassRevealer.mpplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C81392A2281FBC200092FD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C8139302281FD3900092FD7 /* MacPassRevealer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacPassRevealer.h; sourceTree = "<group>"; };
-		4C8139312281FD3900092FD7 /* MacPassRevealer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MacPassRevealer.m; sourceTree = "<group>"; };
-		7E93DA0B22A8538200C8D3E5 /* MPRHotKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRHotKeys.h; sourceTree = "<group>"; };
-		7E93DA0C22A8538200C8D3E5 /* MPRHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRHotKey.m; sourceTree = "<group>"; };
-		7E93DA0D22A8538200C8D3E5 /* MPRStatusItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRStatusItem.h; sourceTree = "<group>"; };
-		7E93DA0E22A8538200C8D3E5 /* MPRStatusItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRStatusItem.m; sourceTree = "<group>"; };
+		7E71527122AAEE6B00A6E7F0 /* MPRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPRViewController.h; sourceTree = "<group>"; };
+		7E71527222AAEE6B00A6E7F0 /* MPRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPRViewController.m; sourceTree = "<group>"; };
+		7E7191CB22B03C930001FDA4 /* MPRMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPRMenu.m; sourceTree = "<group>"; };
+		7E7191CD22B03C9F0001FDA4 /* MPRMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPRMenu.h; sourceTree = "<group>"; };
+		7E95982622B135A600157873 /* MPRStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MPRStoryboard.storyboard; sourceTree = "<group>"; };
+		7EAB7E5522A97DBE00D35C38 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EAB7E5622A97DBE00D35C38 /* MPRHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRHotKey.m; sourceTree = "<group>"; };
+		7EAB7E5722A97DBE00D35C38 /* MPRHotKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRHotKeys.h; sourceTree = "<group>"; };
+		7EAB7E5822A97DBE00D35C38 /* MPRStatusItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRStatusItem.h; sourceTree = "<group>"; };
+		7EAB7E5922A97DBE00D35C38 /* Lock3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lock3.png; sourceTree = "<group>"; };
+		7EAB7E5A22A97DBE00D35C38 /* MPRStatusItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRStatusItem.m; sourceTree = "<group>"; };
+		7EAB7E5B22A97DBE00D35C38 /* MacPassRevealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacPassRevealer.h; sourceTree = "<group>"; };
+		7EAB7E5C22A97DBE00D35C38 /* MacPassRevealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacPassRevealer.m; sourceTree = "<group>"; };
+		7EBB6A5C22A9ED2800DB23FD /* MPRView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPRView.h; sourceTree = "<group>"; };
+		7EBB6A5D22A9ED2800DB23FD /* MPRView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPRView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +51,7 @@
 		4C81391E2281FBC200092FD7 = {
 			isa = PBXGroup;
 			children = (
+				7E95982622B135A600157873 /* MPRStoryboard.storyboard */,
 				4C8139292281FBC200092FD7 /* MacPassRevealer */,
 				4C8139282281FBC200092FD7 /* Products */,
 			);
@@ -55,16 +68,30 @@
 		4C8139292281FBC200092FD7 /* MacPassRevealer */ = {
 			isa = PBXGroup;
 			children = (
-				7E93DA0C22A8538200C8D3E5 /* MPRHotKey.m */,
-				7E93DA0B22A8538200C8D3E5 /* MPRHotKeys.h */,
-				7E93DA0D22A8538200C8D3E5 /* MPRStatusItem.h */,
-				7E93DA0E22A8538200C8D3E5 /* MPRStatusItem.m */,
-				4C156031229E840E004BF919 /* Lock3.png */,
-				4C81392A2281FBC200092FD7 /* Info.plist */,
-				4C8139302281FD3900092FD7 /* MacPassRevealer.h */,
-				4C8139312281FD3900092FD7 /* MacPassRevealer.m */,
+				7E7191CE22B0468D0001FDA4 /* View */,
+				7EAB7E5522A97DBE00D35C38 /* Info.plist */,
+				7EAB7E5922A97DBE00D35C38 /* Lock3.png */,
+				7EAB7E5B22A97DBE00D35C38 /* MacPassRevealer.h */,
+				7EAB7E5C22A97DBE00D35C38 /* MacPassRevealer.m */,
+				7E7191CD22B03C9F0001FDA4 /* MPRMenu.h */,
+				7E7191CB22B03C930001FDA4 /* MPRMenu.m */,
+				7EAB7E5722A97DBE00D35C38 /* MPRHotKeys.h */,
+				7EAB7E5622A97DBE00D35C38 /* MPRHotKey.m */,
+				7EAB7E5822A97DBE00D35C38 /* MPRStatusItem.h */,
+				7EAB7E5A22A97DBE00D35C38 /* MPRStatusItem.m */,
 			);
 			path = MacPassRevealer;
+			sourceTree = "<group>";
+		};
+		7E7191CE22B0468D0001FDA4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E71527122AAEE6B00A6E7F0 /* MPRViewController.h */,
+				7E71527222AAEE6B00A6E7F0 /* MPRViewController.m */,
+				7EBB6A5C22A9ED2800DB23FD /* MPRView.h */,
+				7EBB6A5D22A9ED2800DB23FD /* MPRView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +151,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C156032229E840E004BF919 /* Lock3.png in Resources */,
+				7EAB7E5F22A97DBE00D35C38 /* Lock3.png in Resources */,
+				7EAB7E5D22A97DBE00D35C38 /* Info.plist in Resources */,
+				7E95982722B135A600157873 /* MPRStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,9 +164,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C8139322281FD3900092FD7 /* MacPassRevealer.m in Sources */,
-				7E93DA1022A8538200C8D3E5 /* MPRStatusItem.m in Sources */,
-				7E93DA0F22A8538200C8D3E5 /* MPRHotKey.m in Sources */,
+				7EAB7E6122A97DBE00D35C38 /* MacPassRevealer.m in Sources */,
+				7EAB7E6022A97DBE00D35C38 /* MPRStatusItem.m in Sources */,
+				7E71527322AAEE6B00A6E7F0 /* MPRViewController.m in Sources */,
+				7EAB7E5E22A97DBE00D35C38 /* MPRHotKey.m in Sources */,
+				7E7191CC22B03C930001FDA4 /* MPRMenu.m in Sources */,
+				7EBB6A5E22A9ED2800DB23FD /* MPRView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +313,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 55SM4L4Z97;
+				DEVELOPMENT_TEAM = XXSQT4Y6X2;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../MacPass/**";
 				INFOPLIST_FILE = MacPassRevealer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
@@ -299,7 +331,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 55SM4L4Z97;
+				DEVELOPMENT_TEAM = XXSQT4Y6X2;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../MacPass/**";
 				INFOPLIST_FILE = MacPassRevealer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
