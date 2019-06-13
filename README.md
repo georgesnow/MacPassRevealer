@@ -7,9 +7,6 @@ I do recommend testing it out before making part of your production use.
 
 Important Notes:
 
-Global Autotype - if you are using GAutotpye as word of caution. 
-I did notice on rare occasions Global Autotype would trigger.
-This seemed to be related to using neighboring keys (ie..hitting both keys and trigging wrong event)
 
 The keyboard shortcut is hard configured for Control+Option+`
 
