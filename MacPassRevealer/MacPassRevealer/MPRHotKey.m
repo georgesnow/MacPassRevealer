@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Carbon/Carbon.h>
 #import "MPRHotKeys.h"
+#import "MPRViewController.h"
 
 static NSString *const MPRMacPassBundleIdentifier = @"com.hicknhacksoftware.MacPass";
 static int const MPRHotKeyId1 = 1;
@@ -35,7 +36,10 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
     
     switch (hotKeyId) {
         case MPRHotKeyId1:
-            //NSLog(@"frontApp and other hotkey: %@", frontMostApplication);
+          NSLog(@"other hotkey: %@", frontMostApplication);
+          //hotkey for showing status bar popover
+          //future implementation
+        
             break;
         case MPRHotKeyId2: {
             if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
@@ -73,7 +77,7 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
     gMyHotKeyID.signature='htk1';
     gMyHotKeyID.id=MPRHotKeyId1;
     //Test shortcut - uncomment when testing the other switch case
-    //RegisterEventHotKey(50, controlKey+cmdKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
+    RegisterEventHotKey(96, cmdKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
     
     gMyHotKeyID.signature='htk2';
     gMyHotKeyID.id=MPRHotKeyId2;

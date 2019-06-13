@@ -11,13 +11,16 @@
 NS_ASSUME_NONNULL_BEGIN
 //@protocol MPRStatusItemControllerDelegate;
 
-@interface MPRViewController : NSViewController{
-    
-}
+@interface MPRViewController : NSViewController
 
+@property (weak) IBOutlet NSTextField *bundleID;
 
 //-(instancetype)init;
 
+- (IBAction)activateMacPass:(id)sender;
+- (IBAction)lockMacPass:(id)sender;
+
+- (IBAction)quitMacPass:(id)sender;
 
 
 @end

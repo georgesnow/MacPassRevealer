@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,54 +10,82 @@
             <objects>
                 <viewController storyboardIdentifier="MPRViewController" id="RtS-af-g7P" customClass="MPRViewController" sceneMemberID="viewController">
                     <view key="view" id="LzW-8K-ffn">
-                        <rect key="frame" x="0.0" y="0.0" width="330" height="164"/>
+                        <rect key="frame" x="0.0" y="0.0" width="310" height="124"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bgh-Kh-Pcm">
-                                <rect key="frame" x="235" y="95" width="81" height="32"/>
+                                <rect key="frame" x="169" y="88" width="127" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rgd-sC-Pep">
+                                <buttonCell key="cell" type="push" title="Hide/Show" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rgd-sC-Pep">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="activateMacPass:" target="RtS-af-g7P" id="8hp-tM-aeu"/>
+                                </connections>
                             </button>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybb-NR-zqC">
-                                <rect key="frame" x="97" y="132" width="213" height="22"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cJs-F3-FyJ">
+                                <rect key="frame" x="169" y="37" width="127" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="ivT-kO-Sal">
+                                <buttonCell key="cell" type="push" title="Quit MacPass" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hIt-Xe-Hwq">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </searchFieldCell>
-                            </searchField>
-                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="51u-IV-DSO">
-                                <rect key="frame" x="8" y="129" width="76" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Tbs-rD-6tB" id="t4a-Sl-Mzh">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="6EW-nn-bQC">
-                                        <items>
-                                            <menuItem title="Item 1" state="on" id="Tbs-rD-6tB"/>
-                                            <menuItem title="Item 2" id="fPo-6e-2d3"/>
-                                            <menuItem title="Item 3" id="Q35-ty-6ok"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                            </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CyG-3D-fuF">
-                                <rect key="frame" x="20" y="102" width="37" height="17"/>
+                                    <string key="keyEquivalent">w</string>
+                                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="quitMacPass:" target="RtS-af-g7P" id="gIx-ws-Qjz"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2J-bp-eje">
+                                <rect key="frame" x="6" y="98" width="82" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="VZG-z9-jNy">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Current App:" id="ATs-Wn-p0S">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUa-2t-hht">
-                                <rect key="frame" x="50" y="73" width="92" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGt-hy-Uee">
+                                <rect key="frame" x="4" y="77" width="86" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" selectable="YES" title="Multiline Label" id="jUC-AU-rGx">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="*Future use..." id="FNa-lc-fiw">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqy-2b-Dkn">
+                                <rect key="frame" x="175" y="26" width="100" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Shortcut: ⌥⌘W" id="3mI-A7-fqn">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2l1-qB-5he">
+                                <rect key="frame" x="175" y="77" width="88" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Shortcut: ^⌥`" id="NYH-lb-W4f">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-hW-zLX">
+                                <rect key="frame" x="230" y="53" width="4" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" id="iko-bt-xHj">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CyG-3D-fuF">
+                                <rect key="frame" x="92" y="98" width="85" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="None" id="VZG-z9-jNy">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -66,13 +94,23 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="bundleID" destination="CyG-3D-fuF" id="ycb-2B-kZP"/>
+                        <outlet property="bundleID" destination="CyG-3D-fuF" id="3cE-CY-nZB"/>
                         <outlet property="view" destination="LzW-8K-ffn" id="LDb-Md-Pol"/>
                     </connections>
                 </viewController>
                 <customObject id="MYo-na-zlX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="apG-YH-g7b" customClass="MPRMenu">
+                    <items>
+                        <menuItem title="Hide/Show MacPass" id="XGm-G6-yRD">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Quit MacPass" id="6tM-pM-jdJ">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
-            <point key="canvasLocation" x="-8" y="-22"/>
+            <point key="canvasLocation" x="-18" y="-42"/>
         </scene>
     </scenes>
 </document>

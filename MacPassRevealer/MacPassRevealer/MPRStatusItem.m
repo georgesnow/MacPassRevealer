@@ -105,6 +105,9 @@
 //  NSLog(@"theEvent tag %@", theEvent);
  
   NSEvent *event = [NSApp currentEvent];
+  
+  NSLog(@"mouse event type %lu", (unsigned long)event.type);
+  
 //  clickMask = [theEvent modifierFlags] & NSEventModifierFlagOption;
 //  [self.statusItem.button menuForEvent:theEvent];
 //  NSLog(@"theEvent %id",theEvent);
@@ -132,7 +135,7 @@
 //    thePopover.contentViewController = viewController;
     thePopover.contentViewController = self.viewController;
 //    [thePopover setContentViewController:viewController];
-    [thePopover setContentSize:CGSizeMake(300, 300)]; //150,100
+    [thePopover setContentSize:CGSizeMake(310, 124)]; //150,100
     [thePopover setBehavior:NSPopoverBehaviorTransient];
     [thePopover setAnimates:YES];
     [thePopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSRectEdgeMinY];//NSMaxYEdge
@@ -157,6 +160,9 @@
     
   
   
+  }
+  else if (event.type == (NSEventTypeRightMouseDown)){
+    NSLog(@"right mouse detected");
   }
   else {
     NSLog(@"regularclick detected");

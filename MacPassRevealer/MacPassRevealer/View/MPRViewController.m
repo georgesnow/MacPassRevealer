@@ -12,40 +12,56 @@
 @interface MPRViewController ()
 
 
-@property (weak) IBOutlet NSTextField *bundleID;
+
 
 
 
 @end
 
 @implementation MPRViewController
+@synthesize bundleID;
+
+
 - (instancetype)init
 {
   NSBundle *classBundle = [NSBundle bundleForClass:[self class]];
   NSStoryboard *storyBoard = [NSStoryboard storyboardWithName:@"MPRStoryboard" bundle:classBundle];
   MPRViewController *viewController = [storyBoard instantiateControllerWithIdentifier:@"MPRViewController"];
-  NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
-  [_bundleID setStringValue:frontMostApplication.localizedName];
+
   return viewController;
     
-   //MPRViewController
-  //MPRViewController
-  //  MPRViewController *viewController = [[MPRViewController init] instantiateInitialController];
+
   
 }
 
-//- (instancetype)init
-//{
-//  self = [[NSViewController init] instantiateInitialController];
-//  return self;
-//}
-//
-//- (void)windowDidLoad
-//{
-//  [super windowDidLoad];
-//  self.windowFrameAutosaveName = @"MPRView";
-//}
 
+-(void)viewWillAppear {
+  NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
+  NSString *bundleIDString = (NSString *)frontMostApplication.localizedName;
+  NSLog(@"bundleID %@", bundleID.stringValue);
+  [bundleID setStringValue:bundleIDString];
+  
+  NSLog(@"bundleIDString %@", bundleIDString);
+}
+
+
+- (IBAction)activateMacPass:(id)sender {
+    NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
+    NSRunningApplication *macPass = NSRunningApplication.currentApplication;
+    if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
+      [NSApplication.sharedApplication hide:nil];
+    }
+    else {
+      [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
+    }
+}
+
+- (IBAction)lockMacPass:(id)sender {
+}
+
+- (IBAction)quitMacPass:(id)sender {
+  [[NSApplication sharedApplication] terminate:self];
+}
 
 
 @end
