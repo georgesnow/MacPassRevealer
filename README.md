@@ -7,10 +7,21 @@ I do recommend testing it out before making part of your production use.
 
 Important Notes:
 
+Single click of status bar icon will hide/show MacPass
+
+Option+Click Quits MacPass
+
+Control+Click shows Popover Menu
 
 The keyboard shortcut is hard configured for Control+Option+`
 
 
 Other Notes:
 Added a Menubar icon for quick access
+
 Hopefully, I will later add custmizating the keyboard shortcut.
+
+Demo:
+
+
+![](macpassrevealer-popup.gif)
