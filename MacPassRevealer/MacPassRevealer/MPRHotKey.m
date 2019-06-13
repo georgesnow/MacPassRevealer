@@ -77,7 +77,7 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
     gMyHotKeyID.signature='htk1';
     gMyHotKeyID.id=MPRHotKeyId1;
     //Test shortcut - uncomment when testing the other switch case
-    RegisterEventHotKey(96, cmdKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
+    //RegisterEventHotKey(96, cmdKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
     
     gMyHotKeyID.signature='htk2';
     gMyHotKeyID.id=MPRHotKeyId2;
