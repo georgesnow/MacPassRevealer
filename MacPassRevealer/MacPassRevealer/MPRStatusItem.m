@@ -3,7 +3,7 @@
 //  MacPassRevealer
 //
 //  Created by George Snow on 6/3/19.
-//  Copyright © 2019 HicknHack Software GmbH. All rights reserved.
+//  Copyright © 2019 George Snow All rights reserved.
 //
 #import "Cocoa/Cocoa.h"
 #import <Foundation/Foundation.h>
