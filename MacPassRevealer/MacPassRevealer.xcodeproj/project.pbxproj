@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C156032229E840E004BF919 /* Lock3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C156031229E840E004BF919 /* Lock3.png */; };
 		4C8139322281FD3900092FD7 /* MacPassRevealer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8139312281FD3900092FD7 /* MacPassRevealer.m */; };
+		7E5A3AE422C2864100E25C47 /* MPRHotKeyCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5A3AE322C2864100E25C47 /* MPRHotKeyCocoa.m */; };
 		7E93DA0F22A8538200C8D3E5 /* MPRHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E93DA0C22A8538200C8D3E5 /* MPRHotKey.m */; };
 		7E93DA1022A8538200C8D3E5 /* MPRStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E93DA0E22A8538200C8D3E5 /* MPRStatusItem.m */; };
 /* End PBXBuildFile section */
@@ -19,6 +20,8 @@
 		4C81392A2281FBC200092FD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8139302281FD3900092FD7 /* MacPassRevealer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacPassRevealer.h; sourceTree = "<group>"; };
 		4C8139312281FD3900092FD7 /* MacPassRevealer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MacPassRevealer.m; sourceTree = "<group>"; };
+		7E5A3AE322C2864100E25C47 /* MPRHotKeyCocoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPRHotKeyCocoa.m; sourceTree = "<group>"; };
+		7E5A3AE522C2864E00E25C47 /* MPRHotKeyCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPRHotKeyCocoa.h; sourceTree = "<group>"; };
 		7E93DA0B22A8538200C8D3E5 /* MPRHotKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRHotKeys.h; sourceTree = "<group>"; };
 		7E93DA0C22A8538200C8D3E5 /* MPRHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRHotKey.m; sourceTree = "<group>"; };
 		7E93DA0D22A8538200C8D3E5 /* MPRStatusItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRStatusItem.h; sourceTree = "<group>"; };
@@ -55,8 +58,10 @@
 		4C8139292281FBC200092FD7 /* MacPassRevealer */ = {
 			isa = PBXGroup;
 			children = (
-				7E93DA0C22A8538200C8D3E5 /* MPRHotKey.m */,
+				7E5A3AE522C2864E00E25C47 /* MPRHotKeyCocoa.h */,
+				7E5A3AE322C2864100E25C47 /* MPRHotKeyCocoa.m */,
 				7E93DA0B22A8538200C8D3E5 /* MPRHotKeys.h */,
+				7E93DA0C22A8538200C8D3E5 /* MPRHotKey.m */,
 				7E93DA0D22A8538200C8D3E5 /* MPRStatusItem.h */,
 				7E93DA0E22A8538200C8D3E5 /* MPRStatusItem.m */,
 				4C156031229E840E004BF919 /* Lock3.png */,
@@ -138,6 +143,7 @@
 				4C8139322281FD3900092FD7 /* MacPassRevealer.m in Sources */,
 				7E93DA1022A8538200C8D3E5 /* MPRStatusItem.m in Sources */,
 				7E93DA0F22A8538200C8D3E5 /* MPRHotKey.m in Sources */,
+				7E5A3AE422C2864100E25C47 /* MPRHotKeyCocoa.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +287,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 55SM4L4Z97;
+				DEVELOPMENT_TEAM = XXSQT4Y6X2;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../MacPass/**";
 				INFOPLIST_FILE = MacPassRevealer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
@@ -299,7 +305,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 55SM4L4Z97;
+				DEVELOPMENT_TEAM = XXSQT4Y6X2;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../MacPass/**";
 				INFOPLIST_FILE = MacPassRevealer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
