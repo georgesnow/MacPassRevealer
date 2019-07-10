@@ -13,7 +13,7 @@ Option+Click Quits MacPass
 
 Control+Click shows Popover Menu
 
-The keyboard shortcut is hard configured for Control+Option+`
+The keyboard shortcut is hard configured for Option+Command+` (HotKey updated)
 
 
 Other Notes:
