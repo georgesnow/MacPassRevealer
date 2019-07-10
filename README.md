@@ -8,7 +8,9 @@ I do recommend testing it out before making part of your production use.
 New Feature: 
 
 -Lock Database from menu bar
+
 -Control and Right Double click now show menu (working making so you don't have to doubleclick)
+
 -Cocoa Hotkeys
 
 
