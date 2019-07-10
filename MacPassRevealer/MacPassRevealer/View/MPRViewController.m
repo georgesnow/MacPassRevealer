@@ -7,12 +7,13 @@
 //
 
 #import "MPRViewController.h"
-
+#import "MPDocument.h"
 
 @interface MPRViewController ()
 
 
-
+@property (weak) MPDocument *currentDoc;
+@property (readonly) BOOL queryDocumentOpen;
 
 
 
@@ -43,7 +44,9 @@
   
   NSLog(@"bundleIDString %@", bundleIDString);
 }
-
+- (BOOL)queryDocumentOpen {
+  return self.currentDoc && !self.currentDoc.encrypted;
+}
 
 - (IBAction)activateMacPass:(id)sender {
     NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
@@ -57,6 +60,22 @@
 }
 
 - (IBAction)lockMacPass:(id)sender {
+  NSArray *documents = [NSDocumentController sharedDocumentController].documents;
+  MPDocument __weak *lastDocument;
+  for(MPDocument *document in documents) {
+    if(document.encrypted) {
+      NSLog(@"Database is Locked: %@", document.displayName);
+      
+      continue;
+    }
+    lastDocument = document;
+    [lastDocument lockDatabase:nil];
+    
+    //  [_currentDoc lockDatabase:nil];
+    NSLog(@"lock db %@", _currentDoc);
+    
+    NSLog(@"attempted lock");
+  }
 }
 
 - (IBAction)quitMacPass:(id)sender {
