@@ -3,7 +3,7 @@
 //  MacPassRevealer
 //
 //  Created by georgesnow on 6/3/19.
-//  Copyright © 2019 George Snow All rights reserved.
+//  Copyright © 2019 HicknHack Software GmbH. All rights reserved.
 //
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
@@ -31,7 +31,7 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
     
     NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
     NSRunningApplication *macPass = NSRunningApplication.currentApplication;
-    
+  
     NSLog(@"frontApp: %@", frontMostApplication);
     
     switch (hotKeyId) {
@@ -42,12 +42,13 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
         
             break;
         case MPRHotKeyId2: {
-            if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
-                [NSApplication.sharedApplication hide:nil];
-            }
-            else {
-                [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
-            }
+
+          if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
+            [NSApplication.sharedApplication hide:nil];
+          }
+          else {
+            [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
+          }
             break;
         }
     }
@@ -77,11 +78,12 @@ OSStatus OnHotKeyEvent(EventHandlerCallRef nextHandler,EventRef theEvent,void *u
     gMyHotKeyID.signature='htk1';
     gMyHotKeyID.id=MPRHotKeyId1;
     //Test shortcut - uncomment when testing the other switch case
-    //RegisterEventHotKey(96, cmdKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
-    
+//    RegisterEventHotKey(96, cmdKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
+  
     gMyHotKeyID.signature='htk2';
     gMyHotKeyID.id=MPRHotKeyId2;
     RegisterEventHotKey(50, controlKey+optionKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
+  
 }
 
 @end
