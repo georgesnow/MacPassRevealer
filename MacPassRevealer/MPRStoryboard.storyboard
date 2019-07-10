@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2J-bp-eje">
-                                <rect key="frame" x="6" y="98" width="82" height="17"/>
+                                <rect key="frame" x="6" y="77" width="82" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Current App:" id="ATs-Wn-p0S">
                                     <font key="font" metaFont="system"/>
@@ -47,18 +47,9 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGt-hy-Uee">
-                                <rect key="frame" x="4" y="77" width="86" height="17"/>
+                                <rect key="frame" x="4" y="98" width="86" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="*Future use..." id="FNa-lc-fiw">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqy-2b-Dkn">
-                                <rect key="frame" x="175" y="26" width="100" height="17"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Shortcut: ⌥⌘W" id="3mI-A7-fqn">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -83,7 +74,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CyG-3D-fuF">
-                                <rect key="frame" x="92" y="98" width="85" height="17"/>
+                                <rect key="frame" x="6" y="53" width="163" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="None" id="VZG-z9-jNy">
                                     <font key="font" metaFont="system"/>
@@ -91,6 +82,17 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Bp-GB-ci4">
+                                <rect key="frame" x="169" y="4" width="130" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Lock Database" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oM5-0N-z0m">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="lockMacPass:" target="RtS-af-g7P" id="S0s-Jb-toB"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -99,16 +101,6 @@
                     </connections>
                 </viewController>
                 <customObject id="MYo-na-zlX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <menu id="apG-YH-g7b" customClass="MPRMenu">
-                    <items>
-                        <menuItem title="Hide/Show MacPass" id="XGm-G6-yRD">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                        <menuItem title="Quit MacPass" id="6tM-pM-jdJ">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                    </items>
-                </menu>
             </objects>
             <point key="canvasLocation" x="-18" y="-42"/>
         </scene>
