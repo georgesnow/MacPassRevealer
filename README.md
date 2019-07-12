@@ -5,13 +5,17 @@ In order to use this plugin you have to check off "Load unsecure plugins" and "F
 This is due to the signing of the mplugin, which you should build locally on your machine. 
 I do recommend testing it out before making part of your production use. 
 
-New Feature: 
+New Features: 
 
--Lock Database from menu bar
+-Lock current database
 
--Control and Right Double click now show menu (working making so you don't have to doubleclick)
+-Lock all databases 
+
+-Control and Right click now show menu
 
 -Cocoa Hotkeys
+
+-Prefences options (within MacPass plugin prefs) to disable hotkey and/or menu item individually
 
 
 
