@@ -16,10 +16,18 @@ New Features:
 -Cocoa Hotkeys
 
 -Prefences options (within MacPass plugin prefs) to disable hotkey and/or menu item individually
+  -requires relaunching of MacPass to take effect
 
 
 
 The keyboard shortcut is hard configured and has changed for reliablity for using Cocoa instead of Carbon
 Option+Cmd+`
 
+
+Screenshots:
+
+![](menu.png)
+
+
+![](prefs.png)
 
