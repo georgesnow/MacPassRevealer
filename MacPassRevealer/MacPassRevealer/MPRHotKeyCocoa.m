@@ -21,6 +21,7 @@
 @implementation MPRHotKeyCocoa
 
 - (instancetype)init {
+  
   self = [super init];
   
   if(self)
@@ -33,7 +34,7 @@
 
 -(void)registerCocoaKeys {
   
-  self.globalEventHandler = [NSEvent addGlobalMonitorForEventsMatchingMask:(NSEventMaskKeyDown) handler:^(NSEvent *event){
+   self.globalEventHandler = [NSEvent addGlobalMonitorForEventsMatchingMask:(NSEventMaskKeyDown) handler:^(NSEvent *event){
     ///code
     int keyCodeNeeded = [event keyCode];
     //NSLog(@"keyCodedNeeded %d", keyCodeNeeded);
@@ -41,12 +42,13 @@
 //    if (self->_keyCode == 50)
     if (keyCodeNeeded == 50 && (([event modifierFlags] & NSEventModifierFlagCommand)) &&  (([event modifierFlags] & NSEventModifierFlagOption))) {
       NSLog(@"global -got the keycode / cntrl+opt+~ and control key");
-      
+
       [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
-      
+
     }
-    
+
   }];
+  
   self.localEventHandler = [NSEvent addLocalMonitorForEventsMatchingMask:(NSEventMaskKeyDown) handler:^NSEvent* (NSEvent *localEvent) {
     ///code
     int keyCodeNeeded = [localEvent keyCode];
@@ -60,6 +62,9 @@
     return localEvent;
   }];
 }
+
+
+
 - (void) dealloc {
   
   [NSEvent removeMonitor:self.globalEventHandler];

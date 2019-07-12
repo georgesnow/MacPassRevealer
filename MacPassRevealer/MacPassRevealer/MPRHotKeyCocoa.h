@@ -11,7 +11,6 @@
 #import "MPRHotKeyCocoa.h"
 
 
-
 @interface MPRHotKeyCocoa : NSObject;
 
 

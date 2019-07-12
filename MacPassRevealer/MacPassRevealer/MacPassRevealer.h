@@ -8,9 +8,11 @@
 #import "MPPlugin.h"
 
 NS_ASSUME_NONNULL_BEGIN
+FOUNDATION_EXPORT NSString *const kMPRSettingsKeyShowMenuItem;
+FOUNDATION_EXPORT NSString *const kMPRSettingsKeyHotKey;
 
 
-@interface MPRMacPassRevealer : MPPlugin;
+@interface MPRMacPassRevealer : MPPlugin <MPPluginSettings>;
 
 
 @end
