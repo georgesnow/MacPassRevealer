@@ -10,7 +10,7 @@
 #import "Carbon/Carbon.h"
 #import "MPRHotKeys.h"
 #import "MPRStatusItem.h"
-#import "MPRHotKeyCocoa.h"
+//#import "MPRHotKeyCocoa.h"
 #import "MPRSettingsViewController.h"
 
 //id eventHandlerGlobal;
@@ -25,7 +25,7 @@ NSString *const kMPRSettingsKeyHotKey                 = @"kMPRSettingsKeyHotKey"
 
 @property (strong) MPRHotKeys *registerHotKeys;
 @property (strong) MPRStatusItem *statusItem;
-@property (strong) MPRHotKeyCocoa *registerCocoaKeys;
+//@property (strong) MPRHotKeyCocoa *registerCocoaKeys;
 
 @property (nonatomic) BOOL showStatusItem;
 @property (nonatomic) BOOL hotkeyEnabled;
@@ -44,27 +44,21 @@ NSString *const kMPRSettingsKeyHotKey                 = @"kMPRSettingsKeyHotKey"
 - (instancetype)initWithPluginHost:(MPPluginHost *)host {
   self = [super initWithPluginHost:host];
   if(self) {
-//    self.registerHotKeys = [[MPRHotKeys alloc] init];
-//    [self registerHotKeys];
+
     NSUserDefaults *defaultsController = [NSUserDefaults standardUserDefaults];
-//    [defaults setBool:YES forKey:@"HotKey"];
-//    [defaults setBool:YES forKey:@"ShowStatusIcon"];
-    //[defaults synchronize];
-//    NSString *showItemKeyPath = [NSString stringWithFormat:@"values.%@", kMPRSettingsKeyShowMenuItem];
-//    NSString *hotkeyEnabledKeyPath = [NSString stringWithFormat:@"values.%@", kMPRSettingsKeyHotKey];
-//    [self bind:NSStringFromSelector(@selector(showStatusItem)) toObject:defaultsController withKeyPath:showItemKeyPath options:nil];
     
     BOOL showStatusItem = [defaultsController boolForKey:kMPRSettingsKeyShowMenuItem];
     BOOL hotkeyEnabled = [defaultsController boolForKey:kMPRSettingsKeyHotKey];
     
     NSLog(@"status icon enabled %hhd", showStatusItem);
     NSLog(@"hotkey enabled  %hhd", hotkeyEnabled);
-//    self.statusItem = [[MPRStatusItem alloc] init];
-//    [self statusItem];
+
     
     if (hotkeyEnabled == YES){
-      self.registerCocoaKeys = [[MPRHotKeyCocoa alloc] init];
-      [self registerCocoaKeys];
+//      self.registerCocoaKeys = [[MPRHotKeyCocoa alloc] init];
+//      [self registerCocoaKeys];
+        self.registerHotKeys = [[MPRHotKeys alloc] init];
+        [self registerHotKeys];
     }
     else {
       NSLog(@"hotkey disabled");
@@ -78,6 +72,7 @@ NSString *const kMPRSettingsKeyHotKey                 = @"kMPRSettingsKeyHotKey"
       NSLog(@"status item off");
 //      Show dock icon - requires relaunch
 //      [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+        
     }
   }
   return self;
@@ -96,6 +91,10 @@ NSString *const kMPRSettingsKeyHotKey                 = @"kMPRSettingsKeyHotKey"
     self.settingsViewController = [[MPRSettingsViewController alloc] init];
     self.settingsViewController.plugin = self;
   }
+  else {
+    NSLog(@"settings view controller else -- failed");
+    
+  }
   return _settingsViewController;
 }
 
@@ -105,7 +104,7 @@ NSString *const kMPRSettingsKeyHotKey                 = @"kMPRSettingsKeyHotKey"
 
 -(void)dealloc {
   
-  [MPRHotKeyCocoa dealloc];
+//  [MPRHotKeyCocoa dealloc];
   
   
 }

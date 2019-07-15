@@ -25,6 +25,7 @@
 }
 
 - (NSBundle *)nibBundle {
+  NSLog(@"nib bundle bundleforclass %@", self.className);
   return [NSBundle bundleForClass:[self class]];
 }
 
@@ -33,6 +34,7 @@
 }
 
 - (void)awakeFromNib {
+  NSLog(@"awake from nib");
   static BOOL didAwake = NO;
   if(!didAwake) {
     NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];

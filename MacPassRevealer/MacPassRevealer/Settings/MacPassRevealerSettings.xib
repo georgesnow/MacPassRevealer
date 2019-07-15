@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPRSettingsViewController">
             <connections>
                 <outlet property="hotkeyEnabled" destination="7X4-aF-1sY" id="TeJ-Ea-Cg7"/>
+                <outlet property="showMenuItemCheckButton" destination="eLd-Fc-0kn" id="QXx-J3-eub"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
