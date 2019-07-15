@@ -13,7 +13,7 @@ New Features:
 
 -Control and Right click now show menu
 
--Cocoa Hotkeys
+-Hotkeys
 
 -Prefences options (within MacPass plugin prefs) to disable hotkey and/or menu item individually
   -requires relaunching of MacPass to take effect
@@ -21,7 +21,7 @@ New Features:
 
 
 The keyboard shortcut is hard configured and has changed for reliablity for using Cocoa instead of Carbon
-Option+Cmd+`
+Control+Option+`
 
 
 Screenshots:
