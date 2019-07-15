@@ -11,7 +11,7 @@ New Features:
 
 -Lock all databases 
 
--Control and Right click now show menu
+-Control/Click or Right click will show menu
 
 -Hotkeys
 
