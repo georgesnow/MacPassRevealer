@@ -20,7 +20,7 @@ New Features:
 
 
 
-The keyboard shortcut is hard configured and has changed for reliablity for using Cocoa instead of Carbon
+The keyboard shortcut is hard configured as:
 Control+Option+`
 
 
