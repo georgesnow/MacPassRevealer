@@ -11,8 +11,18 @@
 
 @class MPRMacPassRevealer;
 
-@interface MPRSettingsViewController : NSViewController
+//hotkey custimization
+@class DDHotKeyTextField;
+
+@interface MPRSettingsViewController : NSViewController <NSTextFieldDelegate>
 
 @property (weak) MPRMacPassRevealer *plugin;
+
+//hotkey custimization
+@property (strong) IBOutlet DDHotKeyTextField *hotKeyTextField;
+@property (weak) IBOutlet NSTextField *hotkeyWarningTextField;
+@property (weak) IBOutlet NSButton *hotkeyEnabledCheckBox;
+
+
 
 @end
