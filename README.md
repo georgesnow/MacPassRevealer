@@ -28,3 +28,10 @@ Screenshots:
 
 ![](pref-mpr.png)
 
+
+
+Credit:
+
+DDHotKey - for user customized hotkeys
+
+MacPass (@mstarke) - MPSettings additions for DDHotKeys
