@@ -26,5 +26,5 @@ Screenshots:
 ![](menu-mpr.png)
 
 
-![](prefs-mpr.png)
+![](pref-mpr.png)
 
