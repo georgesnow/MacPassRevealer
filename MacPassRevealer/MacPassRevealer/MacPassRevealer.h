@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXPORT NSString *const kMPRSettingsKeyShowMenuItem;
 FOUNDATION_EXPORT NSString *const kMPRSettingsKeyHotKey;
 
+//hotkey - custimization
+FOUNDATION_EXPORT NSString *const kMPSettingsKeyHotKeyDataKey;
 
 @interface MPRMacPassRevealer : MPPlugin <MPPluginSettings>;
 

@@ -8,27 +8,28 @@
 
 #import "MacPassRevealer.h"
 #import "Carbon/Carbon.h"
-#import "MPRHotKeys.h"
 #import "MPRStatusItem.h"
-//#import "MPRHotKeyCocoa.h"
 #import "MPRSettingsViewController.h"
 
-//id eventHandlerGlobal;
-//id eventHandlerLocal;
+//hotkey - custimization
+#import "DDHotKey+MacPassAdditions.h"
+#import "MPRHotKeyHandler.h"
+
 
 NSString *const kMPRSettingsKeyShowMenuItem           = @"kMPSettingsKeyShowMenuItem";
 NSString *const kMPRSettingsKeyHotKey                 = @"kMPRSettingsKeyHotKey";
 
+
 @interface MPRMacPassRevealer () 
 
 @property (strong) MPRSettingsViewController *settingsViewController;
-
-@property (strong) MPRHotKeys *registerHotKeys;
 @property (strong) MPRStatusItem *statusItem;
-//@property (strong) MPRHotKeyCocoa *registerCocoaKeys;
-
 @property (nonatomic) BOOL showStatusItem;
-@property (nonatomic) BOOL hotkeyEnabled;
+
+
+
+//hotkey custimization
+@property (strong) MPHotKeyHandler *registerUserHotKeyHandler;
 
 @end
 
@@ -37,8 +38,11 @@ NSString *const kMPRSettingsKeyHotKey                 = @"kMPRSettingsKeyHotKey"
 
 @synthesize settingsViewController = _settingsViewController;
 
+
+//hotkey - custimization
 +(void)initialize{
-  [[NSUserDefaults standardUserDefaults] registerDefaults:@{ kMPRSettingsKeyShowMenuItem : @YES, kMPRSettingsKeyHotKey : @YES}];
+  [[NSUserDefaults standardUserDefaults] registerDefaults:@{ kMPRSettingsKeyShowMenuItem : @YES, kMPRSettingsKeyHotKey : @NO}];
+  
 }
 
 - (instancetype)initWithPluginHost:(MPPluginHost *)host {
@@ -48,21 +52,14 @@ NSString *const kMPRSettingsKeyHotKey                 = @"kMPRSettingsKeyHotKey"
     NSUserDefaults *defaultsController = [NSUserDefaults standardUserDefaults];
     
     BOOL showStatusItem = [defaultsController boolForKey:kMPRSettingsKeyShowMenuItem];
-    BOOL hotkeyEnabled = [defaultsController boolForKey:kMPRSettingsKeyHotKey];
-    
-    NSLog(@"status icon enabled %hhd", showStatusItem);
-    NSLog(@"hotkey enabled  %hhd", hotkeyEnabled);
 
     
-    if (hotkeyEnabled == YES){
-//      self.registerCocoaKeys = [[MPRHotKeyCocoa alloc] init];
-//      [self registerCocoaKeys];
-        self.registerHotKeys = [[MPRHotKeys alloc] init];
-        [self registerHotKeys];
-    }
-    else {
-      NSLog(@"hotkey disabled");
-    }
+    NSLog(@"status icon enabled %hhd", showStatusItem);
+//    NSLog(@"hotkey enabled  %hhd", hotkeyEnabled);
+
+    self.registerUserHotKeyHandler = [[MPHotKeyHandler alloc] init];
+    [self registerUserHotKeyHandler];
+    
     if (showStatusItem == YES) {
       self.statusItem = [[MPRStatusItem alloc] init];
 //      Hide dock icon - requires relaunch
@@ -104,7 +101,7 @@ NSString *const kMPRSettingsKeyHotKey                 = @"kMPRSettingsKeyHotKey"
 
 -(void)dealloc {
   
-//  [MPRHotKeyCocoa dealloc];
+
   
   
 }
