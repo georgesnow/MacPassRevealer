@@ -2,7 +2,7 @@
 MacPass Plugin - Global Keyboard shortcut to hide/unhide MacPass
 
 In order to use this plugin you have to check off "Load unsecure plugins" and "Force loading of incompatiable Plugins"
-This is due to the signing of the mplugin, which you can build locally on your machine. Or give the compiled version on the release page a run. (this is a beta version so beaware).
+This is due to the signing of the mplugin, which you should build locally on your machine. 
 I do recommend testing it out before making part of your production use. 
 
 New Features: 
@@ -11,23 +11,20 @@ New Features:
 
 -Lock all databases 
 
--Control/Click or Right click will show menu
+-Control and Right click now show menu
 
--Hotkeys
+-User Defined HotKey - Enable/Disable 
 
--Prefences options (within MacPass plugin prefs) to disable hotkey and/or menu item individually
-  -requires relaunching of MacPass to take effect
+-Menubar Icon (status item) - requires restart of MacPass after Enable/Disable
 
+  **the restart is required for future feature implementation 
 
-
-The keyboard shortcut is hard configured as:
-Control+Option+`
 
 
 Screenshots:
 
-![](menu.png)
+![](menu-mpr.png)
 
 
-![](prefs.png)
+![](prefs-mpr.png)
 
