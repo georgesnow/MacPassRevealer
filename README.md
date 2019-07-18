@@ -11,7 +11,7 @@ New Features:
 
 -Lock all databases 
 
--Control and Right click now show menu
+-Control Click or just a Right click now show menu
 
 -User Defined HotKey - Enable/Disable 
 
