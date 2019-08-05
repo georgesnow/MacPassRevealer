@@ -10,6 +10,7 @@
 #import "MPRStatusItem.h"
 #import "MPDocument.h"
 
+#import "MPAppDelegate.h"
 
 @interface MPRStatusItem ()
 
@@ -17,7 +18,7 @@
 @property (weak) MPDocument *currentDoc;
 @property (readonly) BOOL queryDocumentOpen;
 
-
+@property (weak) MPAppDelegate *mpDelegate;
 
 @end
 
@@ -64,6 +65,10 @@
   self.statusItem.menu = nil;
   [[NSNotificationCenter defaultCenter] removeObserver:self name:NSMenuDidEndTrackingNotification object:notification.object];
 
+}
+
+-(void)menuClose:(NSMenu *) amenu {
+  self.statusItem.menu = nil;
 }
 
 -(NSMenu *)updateStatusBarMenu{
@@ -127,6 +132,18 @@
   }
 }
 
+-(void)openSelectFile {
+  
+  [(MPAppDelegate *)NSApp.delegate showWelcomeWindow];
+  
+  
+}
+-(void)showPluginPrefs {
+  
+  [(MPAppDelegate *)NSApp.delegate showPreferences:nil];
+  
+}
+
 
 - (void)itemClicked:(id)sender {
   //_statusItem.menu = nil;
@@ -150,6 +167,18 @@
     NSMenuItem *lockAllDB = [[NSMenuItem alloc]initWithTitle:@"Lock All" action:@selector(lockAllDatabases:) keyEquivalent:@""];
     NSMenuItem *quitMacPass = [[NSMenuItem alloc] initWithTitle:@"Quit MacPass" action:@selector(quitMacPass:) keyEquivalent:@""];
     
+    
+    //new menu items
+
+//    Open menu causes strange behavior 
+    NSMenuItem *openDB = [[NSMenuItem alloc] initWithTitle:@"Open" action:@selector(openSelectFile) keyEquivalent:@""];
+    openDB.target = self;
+//    [menu addItem:openDB];
+//
+    NSMenuItem *prefMacPass = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(showPluginPrefs) keyEquivalent:@""];
+    prefMacPass.target = self;
+    [menu addItem:prefMacPass];
+    
     [showHide setTarget:self];
     [lockDB setTarget:self];
     [lockAllDB setTarget:self];
@@ -161,10 +190,16 @@
     [menu addItem:quitMacPass];
     self.statusItem.menu = menu;
     
+
+//    set the delegate to allow for right click and replace popUpStatusItemMenu??
+//    [self.statusItem.menu setDelegate:self];
+    
+    
     //Depecrated  in 10.14 - used for right click to display menu
     //replaced when popover version is completed
     [self.statusItem popUpStatusItemMenu:menu];
     self.statusItem.menu = nil;
+    [self.statusItem.button highlight:NO];
 
     //    self.statusItem.button.menu = menu;
     

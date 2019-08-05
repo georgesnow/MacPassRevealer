@@ -15,6 +15,10 @@
 #import "DDHotKey+MacPassAdditions.h"
 #import "MacPassRevealer.h"
 
+#import "MPDocument.h"
+#import "MPDocumentWindowController.h"
+
+
 NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDataKey";
 
 @interface MPHotKeyHandler ()
@@ -22,6 +26,8 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, copy) NSData *hotKeyData;
 @property (strong) DDHotKey *registredHotKey;
+
+@property (assign) NSTimeInterval userActionRequested;
 
 @end
 
@@ -32,8 +38,10 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
   if (self) {
     _enabled = NO;
     
-//    NSUserDefaults *defaultsController = [NSUserDefaults standardUserDefaults];
-//    _enabled = [defaultsController boolForKey:kMPRSettingsKeyHotKey];
+    //    NSUserDefaults *defaultsController = [NSUserDefaults standardUserDefaults];
+    //    _enabled = [defaultsController boolForKey:kMPRSettingsKeyHotKey];
+    
+    _userActionRequested = NSDate.distantPast.timeIntervalSinceReferenceDate;
     
     [self bind:NSStringFromSelector(@selector(enabled))
       toObject:NSUserDefaultsController.sharedUserDefaultsController
@@ -46,15 +54,15 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
     
     //[self _registerHotKey];
     
-//    NSUserDefaults *defaultsController = [NSUserDefaults standardUserDefaults];
-//    BOOL hotkeyEnabled = [defaultsController boolForKey:kMPRSettingsKeyHotKey];
-//    if (hotkeyEnabled){
-//      NSLog(@"hot key enabled handler");
-//      [self _registerHotKey];
-//    }
-//    else {
-//      NSLog(@"hot key disable handler");
-//    }
+    //    NSUserDefaults *defaultsController = [NSUserDefaults standardUserDefaults];
+    //    BOOL hotkeyEnabled = [defaultsController boolForKey:kMPRSettingsKeyHotKey];
+    //    if (hotkeyEnabled){
+    //      NSLog(@"hot key enabled handler");
+    //      [self _registerHotKey];
+    //    }
+    //    else {
+    //      NSLog(@"hot key disable handler");
+    //    }
     
   }
   return self;
@@ -102,21 +110,86 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
 }
 - (void)_didPressHotKey {
   NSLog(@"holy smokes hotkey worked!");
+  
+  //land focus
+  NSArray *documents = [NSDocumentController sharedDocumentController].documents;
+  NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+    MPDocument *document = evaluatedObject;
+    return !document.encrypted;}];
+  NSArray *unlockedDocuments = [documents filteredArrayUsingPredicate:filterPredicate];
+  
+  
+  
   NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
   NSRunningApplication *macPass = NSRunningApplication.currentApplication;
   
   NSLog(@"frontApp: %@", frontMostApplication);
+  NSString *searchContext = frontMostApplication.localizedName;
   if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
     [NSApplication.sharedApplication hide:nil];
   }
   else {
     [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
+    [NSApp.mainWindow makeKeyAndOrderFront:self];
+    MPDocument *currentDocument = [NSDocumentController sharedDocumentController].currentDocument;
+    MPDocument *document = documents.firstObject;
+    if(unlockedDocuments.count == 0){
+      //        [currentDocument showWindows];
+      //        MPDocumentWindowController *wc = document.windowControllers.firstObject;
+      MPDocumentWindowController *wc = currentDocument.windowControllers.firstObject;
+      [wc showPasswordInputWithMessage:NSLocalizedString(@"LOCKED_DATABASE", "Locked Database!")];
+      self.userActionRequested = NSDate.date.timeIntervalSinceReferenceDate;
+      [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
+    }
+    else {
+      //show windows invokes strange window hiding issue
+      //          [document showWindows];
+      //update search works
+      //          [document updateSearch:nil];
+      //        lands focus in search bar everytime
+      [document perfromCustomSearch:nil];
+      
+      //          set the context of the search to the last app before activating
+      //          document.searchContext.searchString = @"test";
+      document.searchContext.searchString = searchContext;
+    }
+    
+    
+    
+    
+    
   }
   
 }
 
+- (void)_didUnlockDatabase:(NSNotification *)notification {
+  /* Remove ourselves and call again to search matches */
+  [NSNotificationCenter.defaultCenter removeObserver:self name:MPDocumentDidUnlockDatabaseNotification object:nil];
+  //    NSTimeInterval now = NSDate.date.timeIntervalSinceReferenceDate;
+  MPDocument *currentDocument = [NSDocumentController sharedDocumentController].currentDocument;
+  
+  //    while (currentDocument.encrypted) {
+  //        NSUserNotification *notification = [[NSUserNotification alloc] init];
+  //
+  //        notification.informativeText = NSLocalizedString(@"Locked Database", "Locked Database");
+  //
+  //        [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+  //        break;
+  //    }
+  
+  double delayInSeconds = 1;
+  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    
+    [currentDocument perfromCustomSearch:nil];
+    
+  });
+  
+  
+  //        NSArray *documents = [NSDocumentController sharedDocumentController].documents;
+  //        MPDocument *document = documents.firstObject;
+  
+  
+}
+
 @end
-
-
-
-

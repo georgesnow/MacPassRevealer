@@ -9,6 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXPORT NSString *const kMPRSettingsKeyShowMenuItem;
+FOUNDATION_EXPORT NSString *const kMPRSettingsKeyHideMPDockIcon;
 FOUNDATION_EXPORT NSString *const kMPRSettingsKeyHotKey;
 
 //hotkey - custimization
