@@ -1,11 +1,17 @@
 # MacPassRevealer
 MacPass Plugin - Global Keyboard shortcut to hide/unhide MacPass
 
-In order to use this plugin you have to check off "Load unsecure plugins" and "Force loading of incompatiable Plugins"
-This is due to the signing of the mplugin, which you should build locally on your machine. 
+In order to use this plugin you have to check off "Force loading of incompatiable Plugins"
+You can build locally on your machine. Signed version in the most recent release
 I do recommend testing it out before making part of your production use. 
 
 New Features: 
+
+-Search context for unlocked databases based on app when hotkey is triggered
+
+-Land focus field locked and unlocked databases
+
+-Preferences option
 
 -Lock current database
 
