@@ -29,6 +29,8 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
 
 @property (assign) NSTimeInterval userActionRequested;
 
+
+
 @end
 
 @implementation MPHotKeyHandler
