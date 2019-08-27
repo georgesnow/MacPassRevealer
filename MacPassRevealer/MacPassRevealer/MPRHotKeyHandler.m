@@ -151,14 +151,24 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
       //update search works
       //          [document updateSearch:nil];
       //        lands focus in search bar everytime
-      if ([currentContext  isNotEqualTo:NULL]){
+      if([frontMostApplication.localizedName isEqualToString:@"Safari"]) {
+        NSAppleScript *script = [[NSAppleScript alloc] initWithSource:@"tell application \"Safari\" to get URL of front document"];
+        NSAppleEventDescriptor *aed = [script executeAndReturnError:NULL];
+        NSURL *url = [[NSURL alloc] initWithString:aed.stringValue];
         [document perfromCustomSearch:nil];
-        document.searchContext.searchString = currentContext;
+        document.searchContext.searchString = url.host;
       }
+
       else {
-        [document perfromCustomSearch:nil];
-        document.searchContext.searchString = searchContext;
-      }
+        if ([currentContext  isNotEqualTo:NULL]){
+          [document perfromCustomSearch:nil];
+          document.searchContext.searchString = currentContext;
+        }
+        else {
+          [document perfromCustomSearch:nil];
+          document.searchContext.searchString = searchContext;
+        }
+    }
       //          set the context of the search to the last app before activating
       //          document.searchContext.searchString = @"test";
       
