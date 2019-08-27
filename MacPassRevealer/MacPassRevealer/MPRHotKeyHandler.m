@@ -135,6 +135,8 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
     [NSApp.mainWindow makeKeyAndOrderFront:self];
     MPDocument *currentDocument = [NSDocumentController sharedDocumentController].currentDocument;
     MPDocument *document = documents.firstObject;
+    NSString *currentContext = document.searchContext.searchString;
+    NSLog(@"current search context: %@", currentContext);
     if(unlockedDocuments.count == 0){
       //        [currentDocument showWindows];
       //        MPDocumentWindowController *wc = document.windowControllers.firstObject;
@@ -149,11 +151,17 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
       //update search works
       //          [document updateSearch:nil];
       //        lands focus in search bar everytime
-      [document perfromCustomSearch:nil];
-      
+      if ([currentContext  isNotEqualTo:NULL]){
+        [document perfromCustomSearch:nil];
+        document.searchContext.searchString = currentContext;
+      }
+      else {
+        [document perfromCustomSearch:nil];
+        document.searchContext.searchString = searchContext;
+      }
       //          set the context of the search to the last app before activating
       //          document.searchContext.searchString = @"test";
-      document.searchContext.searchString = searchContext;
+      
     }
     
     
