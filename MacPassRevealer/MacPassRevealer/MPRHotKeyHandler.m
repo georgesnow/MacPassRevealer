@@ -160,7 +160,7 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
       }
 
       else {
-        if ([currentContext  isNotEqualTo:NULL]){
+        if ([currentContext  isNotEqualTo:NULL] || [currentContext isEqualToString:@""]){
           [document perfromCustomSearch:nil];
           document.searchContext.searchString = currentContext;
         }
