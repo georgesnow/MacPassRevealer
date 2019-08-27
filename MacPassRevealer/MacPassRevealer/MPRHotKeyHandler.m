@@ -127,6 +127,7 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
   
   NSLog(@"frontApp: %@", frontMostApplication);
   NSString *searchContext = frontMostApplication.localizedName;
+  NSLog(@"searchContext %@", searchContext);
   if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
     [NSApplication.sharedApplication hide:nil];
   }
@@ -158,16 +159,43 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
         [document perfromCustomSearch:nil];
         document.searchContext.searchString = url.host;
       }
-
+      
       else {
-        if ([currentContext  isNotEqualTo:NULL] || [currentContext isEqualToString:@""]){
+        MPDocumentWindowController *wc = currentDocument.windowControllers.firstObject;
+        [wc focusEntries:nil];
+        //need to test for com.xxx.bundleid in some way to discern if the currentContext is the frontApp or entered text
+        if ([currentContext  isNotEqualTo:NULL]){
+          NSLog(@"currentcontext isnorequalto NULL");
           [document perfromCustomSearch:nil];
-          document.searchContext.searchString = currentContext;
+          if (![currentContext doesContain:frontMostApplication]  || currentContext.length > 0){
+            document.searchContext.searchString = searchContext;
+          }
+          else if ([currentContext doesContain:frontMostApplication]){
+            document.searchContext.searchString = searchContext;
+          }
+          else {
+            document.searchContext.searchString = currentContext;
+          }
         }
-        else {
-          [document perfromCustomSearch:nil];
-          document.searchContext.searchString = searchContext;
-        }
+//        else if ((![currentContext length]) == 0){
+//          NSLog(@"currentContext length is NOT 0");
+//          //[currentContext isEqualToString:@""] || ![currentContext  isNotEqualTo:NULL]
+//          if ([currentContext isNotEqualTo:searchContext]){
+//            NSLog(@"current context isnotequalto searchContext");
+//            [document perfromCustomSearch:nil];
+//            document.searchContext.searchString = searchContext;
+//          }
+//          else {
+//          NSLog(@"else");
+//          [document perfromCustomSearch:nil];
+//          document.searchContext.searchString = currentContext;
+//        }
+//      }
+      else if ([currentContext isEqual:nil] || [currentContext length] == 0) {
+        NSLog(@"current context isEqual to nil OR currentContext length is 0");
+        [document perfromCustomSearch:nil];
+        document.searchContext.searchString = searchContext;
+      }
     }
       //          set the context of the search to the last app before activating
       //          document.searchContext.searchString = @"test";
