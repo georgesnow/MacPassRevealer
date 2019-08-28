@@ -127,6 +127,7 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
   
   NSLog(@"frontApp: %@", frontMostApplication);
   NSString *searchContext = frontMostApplication.localizedName;
+  NSString *frontAppBundleId = frontMostApplication.bundleIdentifier;
   NSLog(@"searchContext %@", searchContext);
   if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
     [NSApplication.sharedApplication hide:nil];
@@ -152,7 +153,7 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
       //update search works
       //          [document updateSearch:nil];
       //        lands focus in search bar everytime
-      if([frontMostApplication.localizedName isEqualToString:@"Safari"]) {
+      if([frontMostApplication.bundleIdentifier isEqualToString:@"com.apple.Safari"]) {
         NSAppleScript *script = [[NSAppleScript alloc] initWithSource:@"tell application \"Safari\" to get URL of front document"];
         NSAppleEventDescriptor *aed = [script executeAndReturnError:NULL];
         NSURL *url = [[NSURL alloc] initWithString:aed.stringValue];
@@ -167,10 +168,10 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
         if ([currentContext  isNotEqualTo:NULL]){
           NSLog(@"currentcontext isnorequalto NULL");
           [document perfromCustomSearch:nil];
-          if (![currentContext doesContain:frontMostApplication]  || currentContext.length > 0){
+          if (![currentContext doesContain:frontMostApplication.localizedName]  || currentContext.length > 0){
             document.searchContext.searchString = searchContext;
           }
-          else if ([currentContext doesContain:frontMostApplication]){
+          else if ([currentContext doesContain:frontMostApplication.localizedName]){
             document.searchContext.searchString = searchContext;
           }
           else {
