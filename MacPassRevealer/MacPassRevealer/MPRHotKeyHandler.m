@@ -29,7 +29,7 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
 
 @property (assign) NSTimeInterval userActionRequested;
 
-
+@property (nonatomic, assign) BOOL previousAppContext;
 
 @end
 
@@ -39,7 +39,7 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
   self = [super init];
   if (self) {
     _enabled = NO;
-    
+    _previousAppContext = NO;
     //    NSUserDefaults *defaultsController = [NSUserDefaults standardUserDefaults];
     //    _enabled = [defaultsController boolForKey:kMPRSettingsKeyHotKey];
     
@@ -126,9 +126,9 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
   NSRunningApplication *macPass = NSRunningApplication.currentApplication;
   
   NSLog(@"frontApp: %@", frontMostApplication);
-  NSString *searchContext = frontMostApplication.localizedName;
+  NSString *frontAppName = frontMostApplication.localizedName;
   NSString *frontAppBundleId = frontMostApplication.bundleIdentifier;
-  NSLog(@"searchContext %@", searchContext);
+  NSLog(@"frontAppName %@", frontAppName);
   if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
     [NSApplication.sharedApplication hide:nil];
   }
@@ -138,6 +138,9 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
     MPDocument *currentDocument = [NSDocumentController sharedDocumentController].currentDocument;
     MPDocument *document = documents.firstObject;
     NSString *currentContext = document.searchContext.searchString;
+    
+    
+    
     NSLog(@"current search context: %@", currentContext);
     if(unlockedDocuments.count == 0){
       //        [currentDocument showWindows];
@@ -153,29 +156,49 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
       //update search works
       //          [document updateSearch:nil];
       //        lands focus in search bar everytime
+//      [document exitSearch:nil];
       if([frontMostApplication.bundleIdentifier isEqualToString:@"com.apple.Safari"]) {
         NSAppleScript *script = [[NSAppleScript alloc] initWithSource:@"tell application \"Safari\" to get URL of front document"];
         NSAppleEventDescriptor *aed = [script executeAndReturnError:NULL];
         NSURL *url = [[NSURL alloc] initWithString:aed.stringValue];
-        [document perfromCustomSearch:nil];
-        document.searchContext.searchString = url.host;
+        if (_previousAppContext == NO || ([frontAppName isEqualToString:@"Safari"] || (currentContext.length == 0 || [currentContext isEqualTo:NULL]))) {
+          [document perfromCustomSearch:nil];
+          document.searchContext.searchString = url.host;
+          _previousAppContext = YES;
+        }
+        else {
+          NSLog(@"there stuff in search entry");
+        }
       }
       
       else {
         MPDocumentWindowController *wc = currentDocument.windowControllers.firstObject;
+//        [wc focusGroups:nil];
         [wc focusEntries:nil];
+        
         //need to test for com.xxx.bundleid in some way to discern if the currentContext is the frontApp or entered text
         if ([currentContext  isNotEqualTo:NULL]){
           NSLog(@"currentcontext isnorequalto NULL");
           [document perfromCustomSearch:nil];
-          if (![currentContext doesContain:frontMostApplication.localizedName]  || currentContext.length > 0){
-            document.searchContext.searchString = searchContext;
+          if (![currentContext doesContain:frontAppName]  && (!currentContext.length) ){
+            NSLog(@"current context does not contain frontapp name OR currentcontext > 0  %@", frontAppName);
+            document.searchContext.searchString = frontAppName;
+            _previousAppContext = YES;
           }
-          else if ([currentContext doesContain:frontMostApplication.localizedName]){
-            document.searchContext.searchString = searchContext;
+          else if ([currentContext isEqualToString:frontAppName] || (currentContext.length == 0 || [currentContext isEqualTo:NULL])){
+            NSLog(@"current context DOES contain frontapp  %@", frontAppName);
+            document.searchContext.searchString = frontAppName;
+            _previousAppContext = YES;
           }
-          else {
+          else if (_previousAppContext == YES && !(currentContext.length == 0)){
+            NSLog(@"previsousAppContext YES AND NOT currentcontext length = 0 %@", frontAppName);
+            document.searchContext.searchString = frontAppName;
+            _previousAppContext = YES;
+          }
+          else if (currentContext.length > 0 && _previousAppContext == NO) {
+            NSLog(@"anything ELSE %@", currentContext);
             document.searchContext.searchString = currentContext;
+            _previousAppContext = NO;
           }
         }
 //        else if ((![currentContext length]) == 0){
@@ -193,9 +216,10 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
 //        }
 //      }
       else if ([currentContext isEqual:nil] || [currentContext length] == 0) {
-        NSLog(@"current context isEqual to nil OR currentContext length is 0");
+        NSLog(@"current context isEqual to nil OR currentContext length is 0  %@", frontAppName);
         [document perfromCustomSearch:nil];
-        document.searchContext.searchString = searchContext;
+        document.searchContext.searchString = frontAppName;
+        _previousAppContext = YES;
       }
     }
       //          set the context of the search to the last app before activating
