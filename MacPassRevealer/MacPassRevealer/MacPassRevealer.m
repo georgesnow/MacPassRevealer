@@ -75,16 +75,16 @@ NSString *const kMPRSettingsKeyHideMPDockIcon         = @"kMPRSettingsKeyHideMPD
 //      [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
 //
 //      [(MPAppDelegate *)NSApp.delegate showWelcomeWindow];
-        [(MPAppDelegate *)NSApp.delegate openDatabase:nil];
+//        [(MPAppDelegate *)NSApp.delegate openDatabase:nil];
         
-        ProcessSerialNumber psn = { 0, kCurrentProcess };
+//        ProcessSerialNumber psn = { 0, kCurrentProcess };
         if (hideDockIcon == YES) {
             [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
-        TransformProcessType(&psn,kProcessTransformToBackgroundApplication);
+//            TransformProcessType(&psn,kProcessTransformToBackgroundApplication);
 
         }
         else {
-//              TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+//            TransformProcessType(&psn, kProcessTransformToForegroundApplication);
             [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
         }
     }

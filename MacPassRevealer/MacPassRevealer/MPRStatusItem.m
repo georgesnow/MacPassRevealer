@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "MPRStatusItem.h"
 #import "MPDocument.h"
-
+#import "MPDocumentController.h"
+#import "MPDocumentWindowController.h"
 #import "MPAppDelegate.h"
 
 @interface MPRStatusItem ()
@@ -19,6 +20,7 @@
 @property (readonly) BOOL queryDocumentOpen;
 
 @property (weak) MPAppDelegate *mpDelegate;
+@property (assign) NSTimeInterval userActionRequested;
 
 @end
 
@@ -48,17 +50,72 @@
 
 
 - (void)activateMacPass {
-  NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
-  NSRunningApplication *macPass = NSRunningApplication.currentApplication;
-  
-  if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
-    
-    [NSApplication.sharedApplication hide:nil];
-  }
-  else {
-  
-    [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
-  }
+    NSLog(@"holy smokes menuicon worked!");
+    NSArray *documents = NSDocumentController.sharedDocumentController.documents;
+    BOOL hasOpenDocuments = documents.count > 0;
+    if(!hasOpenDocuments) {
+        [((MPDocumentController *)NSDocumentController.sharedDocumentController) reopenLastDocument];
+        [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
+        
+    }
+    else {
+        //land focus
+        NSArray *documents = [NSDocumentController sharedDocumentController].documents;
+        NSPredicate *filterPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            MPDocument *document = evaluatedObject;
+            return !document.encrypted;}];
+        NSArray *unlockedDocuments = [documents filteredArrayUsingPredicate:filterPredicate];
+        
+        
+        
+        NSRunningApplication *frontMostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
+        NSRunningApplication *macPass = NSRunningApplication.currentApplication;
+        
+        NSLog(@"frontApp: %@", frontMostApplication);
+        NSString *searchContext = frontMostApplication.localizedName;
+        if(frontMostApplication.processIdentifier == macPass.processIdentifier) {
+            [NSApplication.sharedApplication hide:nil];
+        }
+        else {
+            [NSApplication.sharedApplication activateIgnoringOtherApps:YES];
+            [NSApp.mainWindow makeKeyAndOrderFront:self];
+            MPDocument *currentDocument = [NSDocumentController sharedDocumentController].currentDocument;
+            MPDocument *document = documents.firstObject;
+            NSString *currentContext = document.searchContext.searchString;
+            NSLog(@"current search context: %@", currentContext);
+            if(unlockedDocuments.count == 0){
+                //        [currentDocument showWindows];
+                //        MPDocumentWindowController *wc = document.windowControllers.firstObject;
+                MPDocumentWindowController *wc = currentDocument.windowControllers.firstObject;
+                [wc showPasswordInputWithMessage:NSLocalizedString(@"LOCKED_DATABASE", "Locked Database!")];
+                self.userActionRequested = NSDate.date.timeIntervalSinceReferenceDate;
+                [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didUnlockDatabase:) name:MPDocumentDidUnlockDatabaseNotification object:nil];
+            }
+            else {
+                //show windows invokes strange window hiding issue
+                //          [document showWindows];
+                //update search works
+                //          [document updateSearch:nil];
+                //        lands focus in search bar everytime
+                if ([currentContext  isNotEqualTo:NULL]){
+                    [document perfromCustomSearch:nil];
+                    document.searchContext.searchString = currentContext;
+                }
+                else {
+                    [document perfromCustomSearch:nil];
+                    document.searchContext.searchString = searchContext;
+                }
+                //          set the context of the search to the last app before activating
+                //          document.searchContext.searchString = @"test";
+                
+            }
+            
+            
+            
+            
+            
+        }
+    }
 }
 -(void)menuDidClose:(NSNotification *)notification{
   NSLog(@"menudidclose");
@@ -209,6 +266,36 @@
     NSLog(@"regularclick detected");
     [self performSelector:@selector(activateMacPass)];
   }
+}
+
+- (void)_didUnlockDatabase:(NSNotification *)notification {
+    /* Remove ourselves and call again to search matches */
+    [NSNotificationCenter.defaultCenter removeObserver:self name:MPDocumentDidUnlockDatabaseNotification object:nil];
+    //    NSTimeInterval now = NSDate.date.timeIntervalSinceReferenceDate;
+    MPDocument *currentDocument = [NSDocumentController sharedDocumentController].currentDocument;
+    
+    //    while (currentDocument.encrypted) {
+    //        NSUserNotification *notification = [[NSUserNotification alloc] init];
+    //
+    //        notification.informativeText = NSLocalizedString(@"Locked Database", "Locked Database");
+    //
+    //        [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+    //        break;
+    //    }
+    
+    double delayInSeconds = 1;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+        [currentDocument perfromCustomSearch:nil];
+        
+    });
+    
+    
+    //        NSArray *documents = [NSDocumentController sharedDocumentController].documents;
+    //        MPDocument *document = documents.firstObject;
+    
+    
 }
 
 @end
