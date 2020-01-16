@@ -19,6 +19,7 @@
 
 @interface MPRSettingsViewController ()
 @property (weak) IBOutlet NSButton *showMenuItemCheckButton;
+@property (weak) IBOutlet NSButton *hideDockIconCheckButton;
 
 
 //hotkey custimization
@@ -54,6 +55,11 @@
                               toObject:defaultsController
                            withKeyPath:[NSString stringWithFormat:@"values.%@", kMPRSettingsKeyShowMenuItem]
                                options:nil];
+    //hide dock custimization
+      [self.hideDockIconCheckButton bind:NSValueBinding
+                                toObject:defaultsController
+                             withKeyPath:[NSString stringWithFormat:@"values.%@", kMPRSettingsKeyHideMPDockIcon]
+                                 options:nil];
     
     //hotkey custimization
     [self performSelector:@selector(currentHotKey)];

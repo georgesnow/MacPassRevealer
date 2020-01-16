@@ -75,22 +75,24 @@ NSString *const kMPRSettingsKeyHideMPDockIcon         = @"kMPRSettingsKeyHideMPD
 //      [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
 //
 //      [(MPAppDelegate *)NSApp.delegate showWelcomeWindow];
-//        ProcessSerialNumber psn = { 0, kCurrentProcess };
-//        if (hideDockIcon == YES) {
-////            [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
-////        TransformProcessType(&psn,kProcessTransformToBackgroundApplication);
-//
-//        }
-//        else {
-////              TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-//            [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
-//        }
+        [(MPAppDelegate *)NSApp.delegate openDatabase:nil];
+        
+        ProcessSerialNumber psn = { 0, kCurrentProcess };
+        if (hideDockIcon == YES) {
+            [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
+        TransformProcessType(&psn,kProcessTransformToBackgroundApplication);
+
+        }
+        else {
+//              TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+            [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
+        }
     }
     else {
       NSLog(@"status item off");
 
 //      Show dock icon - requires relaunch
-//        [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
+        [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
     }
   }
   return self;

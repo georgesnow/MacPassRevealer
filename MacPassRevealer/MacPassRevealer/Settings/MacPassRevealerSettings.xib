@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MPRSettingsViewController">
             <connections>
+                <outlet property="hideDockIconCheckButton" destination="hOg-Re-vyX" id="Z4M-1n-igB"/>
                 <outlet property="hotKeyTextField" destination="nmU-io-Ol5" id="bBI-3N-RDd"/>
                 <outlet property="hotkeyEnabled" destination="7X4-aF-1sY" id="dqy-gl-g90"/>
                 <outlet property="hotkeyEnabledCheckBox" destination="7X4-aF-1sY" id="Xdq-XJ-d70"/>
@@ -22,22 +24,22 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box fixedFrame="YES" title="Preferences" translatesAutoresizingMaskIntoConstraints="NO" id="ws0-xO-TrR">
-                    <rect key="frame" x="17" y="115" width="264" height="143"/>
+                    <rect key="frame" x="17" y="90" width="264" height="168"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="Ma6-K4-wA6">
-                        <rect key="frame" x="3" y="3" width="258" height="125"/>
+                        <rect key="frame" x="3" y="3" width="258" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eLd-Fc-0kn">
-                                <rect key="frame" x="18" y="98" width="126" height="18"/>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOg-Re-vyX">
+                                <rect key="frame" x="18" y="84" width="115" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Show status item" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MAu-Pr-xLu">
+                                <buttonCell key="cell" type="check" title="Hide Dock Icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tVQ-d9-jNQ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7X4-aF-1sY">
-                                <rect key="frame" x="18" y="65" width="119" height="18"/>
+                                <rect key="frame" x="16" y="49" width="119" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="HotKey Enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="V3s-Sg-zYr">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -54,14 +56,22 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GLI-hM-vef">
-                                <rect key="frame" x="129" y="25" width="127" height="14"/>
+                                <rect key="frame" x="129" y="29" width="127" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shortcut is missing Key" id="xmX-wU-lkA">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="label" size="11"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eLd-Fc-0kn">
+                                <rect key="frame" x="18" y="121" width="126" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Show status item" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MAu-Pr-xLu">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                 </box>

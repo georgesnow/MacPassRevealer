@@ -134,8 +134,8 @@
 
 -(void)openSelectFile {
   
-  [(MPAppDelegate *)NSApp.delegate showWelcomeWindow];
-  
+ // [(MPAppDelegate *)NSApp.delegate showWelcomeWindow];
+    [NSDocumentController.sharedDocumentController openDocument:nil];
   
 }
 -(void)showPluginPrefs {
@@ -185,6 +185,7 @@
     [quitMacPass setTarget:self];
 
 //    [menu addItem:showHide];
+    [menu addItem:openDB];
     [menu addItem:lockDB];
     [menu addItem:lockAllDB];
     [menu addItem:quitMacPass];
