@@ -16,10 +16,10 @@
 #import "DDHotKey+MacPassAdditions.h"
 #import "MPSettingsHelper.h"
 
-
 @interface MPRSettingsViewController ()
 @property (weak) IBOutlet NSButton *showMenuItemCheckButton;
 @property (weak) IBOutlet NSButton *hideDockIconCheckButton;
+
 
 
 //hotkey custimization
@@ -32,7 +32,8 @@
 - (void)dealloc {
   NSLog(@"%@ dealloc", [self class]);
   [self.showMenuItemCheckButton unbind:NSValueBinding];
-  
+  [self.hideDockIconCheckButton unbind:NSValueBinding];
+    
   //hotkey custimization
   [self.hotKeyTextField unbind:NSValueBinding];
 }
@@ -56,11 +57,11 @@
                            withKeyPath:[NSString stringWithFormat:@"values.%@", kMPRSettingsKeyShowMenuItem]
                                options:nil];
     //hide dock custimization
-      [self.hideDockIconCheckButton bind:NSValueBinding
+    [self.hideDockIconCheckButton bind:NSValueBinding
                                 toObject:defaultsController
                              withKeyPath:[NSString stringWithFormat:@"values.%@", kMPRSettingsKeyHideMPDockIcon]
                                  options:nil];
-    
+
     //hotkey custimization
     [self performSelector:@selector(currentHotKey)];
         NSString *enableHotKeyPath = [MPSettingsHelper defaultControllerPathForKey:kMPRSettingsKeyHotKey];
@@ -103,8 +104,6 @@
 - (void)_showKeyCodeMissingKeyWarning:(BOOL)show {
   self.hotkeyWarningTextField.hidden = !show;
 }
-
-
 
 @end
 

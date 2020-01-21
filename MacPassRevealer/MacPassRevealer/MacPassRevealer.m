@@ -23,6 +23,7 @@
 NSString *const kMPRSettingsKeyShowMenuItem           = @"kMPSettingsKeyShowMenuItem";
 NSString *const kMPRSettingsKeyHotKey                 = @"kMPRSettingsKeyHotKey";
 NSString *const kMPRSettingsKeyHideMPDockIcon         = @"kMPRSettingsKeyHideMPDockIcon";
+NSString *const kMPRSettingsKeyLoginItem              = @"kMPRSettingsKeyLoginItem";
 
 @interface MPRMacPassRevealer () 
 
@@ -45,7 +46,15 @@ NSString *const kMPRSettingsKeyHideMPDockIcon         = @"kMPRSettingsKeyHideMPD
 
 //hotkey - custimization
 +(void)initialize{
-  [[NSUserDefaults standardUserDefaults] registerDefaults:@{ kMPRSettingsKeyShowMenuItem : @YES, kMPRSettingsKeyHotKey : @NO, kMPRSettingsKeyHideMPDockIcon : @NO}];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{ kMPRSettingsKeyShowMenuItem : @YES, kMPRSettingsKeyHotKey : @NO, kMPRSettingsKeyHideMPDockIcon : @NO, kMPRSettingsKeyLoginItem: @NO}];
+  
+  NSArray *pathComponents = [[[NSBundle mainBundle] bundlePath] pathComponents];
+  //  NSArray *pathComponents = [[[NSBundle bundleWithIdentifier:@"com.hicknhacksoftware.MacPass"] bundlePath] pathComponents];
+//  pathComponents = [pathComponents subarrayWithRange:NSMakeRange(0, [pathComponents count] - 4)];
+  NSString *path = [NSString pathWithComponents:pathComponents];
+//  NSLog(@"pathComp: %@", pathComponents);
+  NSLog(@"path: %@", path);
+  
   
 }
 
@@ -57,7 +66,7 @@ NSString *const kMPRSettingsKeyHideMPDockIcon         = @"kMPRSettingsKeyHideMPD
     
     BOOL showStatusItem = [defaultsController boolForKey:kMPRSettingsKeyShowMenuItem];
     BOOL hideDockIcon = [defaultsController boolForKey:kMPRSettingsKeyHideMPDockIcon];
-    
+      
     NSLog(@"status icon enabled %hhd", showStatusItem);
     NSLog(@"hide dock icon %hhd", hideDockIcon);
 //    NSLog(@"hotkey enabled  %hhd", hotkeyEnabled);
@@ -67,34 +76,24 @@ NSString *const kMPRSettingsKeyHideMPDockIcon         = @"kMPRSettingsKeyHideMPD
     
     if (showStatusItem == YES) {
       self.statusItem = [[MPRStatusItem alloc] init];
-//      Hide dock icon - requires relaunch
-//      Need to add an open menu and/or default database option on launch
-//      what if no last db?? what happens open another db?
-//      Present an option to open recent dbs in menu??
-//      need to figure out the delegate issue when hiding dock icon
-//      [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
-//
-//      [(MPAppDelegate *)NSApp.delegate showWelcomeWindow];
-//        [(MPAppDelegate *)NSApp.delegate openDatabase:nil];
-        
-//        ProcessSerialNumber psn = { 0, kCurrentProcess };
         if (hideDockIcon == YES) {
             [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
-//            TransformProcessType(&psn,kProcessTransformToBackgroundApplication);
-
         }
         else {
-//            TransformProcessType(&psn, kProcessTransformToForegroundApplication);
             [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
         }
     }
     else {
       NSLog(@"status item off");
 
-//      Show dock icon - requires relaunch
+//      Show dock icon
         [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
     }
+    
+
+    
   }
+
   return self;
 }
 
@@ -122,10 +121,9 @@ NSString *const kMPRSettingsKeyHideMPDockIcon         = @"kMPRSettingsKeyHideMPD
   _settingsViewController = settingsViewController;
 }
 
--(void)dealloc {
-  
 
-  
+-(void)dealloc {
+   
   
 }
 

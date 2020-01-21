@@ -15,6 +15,18 @@
 		7EB210C123046D4D00E2CFE8 /* MPRHotKeyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB210BF23046D4D00E2CFE8 /* MPRHotKeyHandler.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7E351CE523D7983A008D4610 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4C156031229E840E004BF919 /* Lock3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lock3.png; sourceTree = "<group>"; };
 		4C8139272281FBC200092FD7 /* MacPassRevealer.mpplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacPassRevealer.mpplugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +105,7 @@
 				4C8139232281FBC200092FD7 /* Sources */,
 				4C8139242281FBC200092FD7 /* Frameworks */,
 				4C8139252281FBC200092FD7 /* Resources */,
+				7E351CE523D7983A008D4610 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -110,6 +123,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MPR;
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "HicknHack Software GmbH";
 				TargetAttributes = {
@@ -124,6 +138,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 4C81391E2281FBC200092FD7;
 			productRefGroup = 4C8139282281FBC200092FD7 /* Products */;

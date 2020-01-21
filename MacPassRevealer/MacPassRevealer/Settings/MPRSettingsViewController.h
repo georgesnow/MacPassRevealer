@@ -23,6 +23,4 @@
 @property (weak) IBOutlet NSTextField *hotkeyWarningTextField;
 @property (weak) IBOutlet NSButton *hotkeyEnabledCheckBox;
 
-
-
 @end
