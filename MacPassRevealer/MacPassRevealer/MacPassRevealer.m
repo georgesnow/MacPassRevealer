@@ -54,9 +54,9 @@ NSString *const kMPRSettingsKeyLoginItem              = @"kMPRSettingsKeyLoginIt
   NSString *path = [NSString pathWithComponents:pathComponents];
 //  NSLog(@"pathComp: %@", pathComponents);
   NSLog(@"path: %@", path);
-  
-  
+ 
 }
+
 
 - (instancetype)initWithPluginHost:(MPPluginHost *)host {
   self = [super initWithPluginHost:host];
@@ -78,6 +78,13 @@ NSString *const kMPRSettingsKeyLoginItem              = @"kMPRSettingsKeyLoginIt
       self.statusItem = [[MPRStatusItem alloc] init];
         if (hideDockIcon == YES) {
             [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyAccessory];
+            SEL theSelector = @selector(hideWindow);
+            NSNotificationCenter* theCenter = [NSNotificationCenter defaultCenter];
+            NSWindow* theWindow = NSApp.mainWindow;
+            [theCenter addObserver:self selector:theSelector name:NSWindowDidResignKeyNotification object:theWindow];
+            [theCenter addObserver:self selector:theSelector name:NSWindowDidResignMainNotification object:theWindow];
+//            [NSApp.mainWindow orderFrontRegardless];
+        
         }
         else {
             [NSApplication.sharedApplication setActivationPolicy:NSApplicationActivationPolicyRegular];
@@ -95,6 +102,11 @@ NSString *const kMPRSettingsKeyLoginItem              = @"kMPRSettingsKeyLoginIt
   }
 
   return self;
+}
+
+-(void)hideWindow
+{
+    [NSApplication.sharedApplication hide:nil];
 }
 
 - (void)setShowStatusItem:(BOOL)showStatusItem {

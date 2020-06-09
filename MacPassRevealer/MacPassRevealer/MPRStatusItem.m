@@ -234,7 +234,6 @@
 //
     NSMenuItem *prefMacPass = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(showPluginPrefs) keyEquivalent:@""];
     prefMacPass.target = self;
-    [menu addItem:prefMacPass];
     
     [showHide setTarget:self];
     [lockDB setTarget:self];
@@ -245,7 +244,9 @@
     [menu addItem:openDB];
     [menu addItem:lockDB];
     [menu addItem:lockAllDB];
+    [menu addItem:prefMacPass];
     [menu addItem:quitMacPass];
+      
     self.statusItem.menu = menu;
     
 

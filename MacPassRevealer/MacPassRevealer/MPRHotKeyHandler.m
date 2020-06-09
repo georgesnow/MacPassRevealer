@@ -70,6 +70,7 @@ NSString *const kMPSettingsKeyHotKeyDataKey           = @"kMPSettingsKeyHotKeyDa
   return self;
 }
 
+
 - (void)dealloc {
   
   [self unbind:NSStringFromSelector(@selector(hotKeyData))];
